@@ -57,7 +57,7 @@ source ecosystem used by millions.
   </small>
 </p>
 
-Before reading on please note that the views state in this article are **my
+Before reading on please note that the views stated in this article are **my
 professional opinion**. My intention is to save you valuable time developing the
 wrong things at the wrong time. It is in no way meant to discredit the
 technology and the brilliant people working on them.
@@ -101,13 +101,13 @@ new, innovative ones.
 Let's look at the main points covered in this article.
 
 1. A tl;dr decision tree to help you choose whether you need OAuth2 or not.
-2. When is OAuth2 and OpenID Connect useful and what are its problems?
+2. When are OAuth2 and OpenID Connect useful and what are their problems?
 3. What misconceptions do developers have about OAuth2 and OpenID Connect?
 4. When should you avoid OAuth2 and OpenID Connect?
 
 Before we dive deeper, I want to stress two points:
 
-1. We have utmost respect for the amount of innovation spawned by researchers
+1. We have the utmost respect for the amount of innovation spawned by researchers
    and contributors in the area of OAuth2 and OpenID Connect and this article
    does not diminish their impressive work. We rather intend to shift the
    mindset of small and medium-sized teams from "we need this complex security
@@ -127,7 +127,7 @@ Before we dive deeper, I want to stress two points:
 Let's agree that it's generally an excellent idea to use an existing piece of
 software to solve login, registration, user management, password, reset, account
 recovery, 2FA, and all topics related to user authentication and permission
-management (authorization). Today most technologies today rely on OAuth2 as the
+management (authorization). Today most technologies rely on OAuth2 as the
 primary interaction protocol. And as we will learn in this article, it is most
 often too complex with too many edge cases.
 
@@ -165,7 +165,7 @@ have collected the following **open source** ones:
    1. Language-specific libraries such as
       [authboss](https://github.com/volatiletech/authboss) with the up- and
       downsides language-specific libraries have.
-   2. ~~[Supertokens](https://supertokens.io)~~ - we no long endorse them due to
+   2. ~~[Supertokens](https://supertokens.io)~~ - we no longer endorse them due to
       a questionable choice of mixing OAuth2 terminology with self-built
       protocols. In particular, the use of OpenID terminology without supporting
       the specification itself, and the use of "access" and "refresh tokens" in
@@ -227,7 +227,7 @@ authentication, an attacker could easily impersonate a legitimate user.
    accepts access tokens as proof of authentication at
    `https://myphotobook.com/login?access_token=<facebook_token>`.
 2. Eve creates app "myevilapp," also offering "Sign in with Facebook"
-3. If alice uses both apps, Eve can use alice's access token from "myevilapp" to
+3. If Alice uses both apps, Eve can use Alice's access token from "myevilapp" to
    impersonate her at Bob's app by calling, for example,
    `https://myphotobook.com/login?access_token=<alices_myevilapp_facebook_token>`.
 
@@ -306,7 +306,7 @@ cookie!
   </small>
 </p>
 
-A counter example to this is Amazon which uses OpenID Connect to sign you into
+A counterexample to this is Amazon which uses OpenID Connect to sign you into
 their Amazon store.
 
 ![Amazon uses OpenID Connect](../../images/articles/oauth2-use-cases-examples/amazon-oidc.png)
@@ -346,7 +346,7 @@ Examples for can be tools like:
   [Typeform](https://www.typeform.com/help/a/set-up-sso-authentication-for-your-account-for-enterprise-customers-360060078751/).
 - Other software products offering SSO via OpenID Connect.
 
-In these cases you have to weight whether you want to use one authentication
+In these cases you have to weigh whether you want to use one authentication
 methodology for first parties, and another one (OpenID Connect) for third
 parties, or whether you want to use OpenID Connect for both. The decision here
 depends a lot on context but neither of the two options are more or less
@@ -361,7 +361,7 @@ Connect and not having to implement two authentication mechanisms.
 The decision here is not clear-cut and depends a lot on context. It can be as
 difficult to implement two authentication mechanisms for first and third-party
 use as implementing only OAuth2 for first and third-party.
-
+i
 ## Complexity and Inherently Insecure Systems
 
 Making things hard to understand and implement never improves security. It makes
@@ -373,7 +373,7 @@ that everyone solves things a little differently. GitHub does not offer OpenID
 Connect capabilities, Facebook has their own flavor of OpenID Connect, Apple had
 to receive an
 [open letter from the OpenID Foundation](https://openid.net/2019/06/27/open-letter-from-the-openid-foundation-to-apple-regarding-sign-in-with-apple/)
-to become compatible, and Auth0 has their own OAuth2 quirks... the list goes on
+to become compatible, and Auth0 has its own OAuth2 quirks... the list goes on
 and on!
 
 OAuth2 and OpenID Connect have spawned an enormous and exciting amount of
@@ -465,7 +465,7 @@ problem! Citing from their
 >    the user's information will be remembered. This session layer makes the SSO
 >    experience possible for inbound SSO implementations.
 > 3. Identity Provider Session Layer: When users attempt to sign in using an
->    identity providers such as Facebook or Google, and they already have a
+>    identity provider such as Facebook or Google, and they already have a
 >    valid sign-in (with whichever provider they choose) they will not be
 >    prompted again to sign in though they may be asked to give permission to
 >    share their information with Auth0 and, in turn, your application.
@@ -545,7 +545,7 @@ the start!
 
 And unfortunately this happens quite a lot. It can be a bug in your system, or
 it can be two services making a request at the same time with a token that needs
-to be refreshed. Preventing these type of race conditions is challenging in
+to be refreshed. Preventing these types of race conditions is challenging in
 front end applications - you will need a good side effect solution such as
 [Redux Saga](https://redux-saga.js.org) - to ensure that only one API call is
 refreshing the token at a time. In distributed systems, this becomes even more
@@ -586,7 +586,7 @@ of resources out there. But which one **applies to your system**?
 ### First-Party Consent
 
 A good question to ask yourself when deciding whether or not you need OAuth2 /
-OpenID Conenct is this if you want them to see a screen similar to the following
+OpenID Connect is this if you want them to see a screen similar to the following
 one:
 
 ![GitHub OAuth2 Prompt Screen](../../images/articles/oauth2-use-cases-examples/github-oauth2-prompt.png)
@@ -624,7 +624,7 @@ For example:
 1. Alice allows _myphotoapp_ to access her Facebook photos.
 2. Bob allows _mytodolist_ to access his Google Calendar.
 
-Let's make a counter example:
+Let's make a counterexample:
 
 If Alice would allow _myphotoapp_ to act as an administrator of the system and
 delete the production database, it would not matter unless Alice is actually a
@@ -673,7 +673,7 @@ Token (so-called pass-by-value tokens) to a random identifier (so-called
 pass-by-reference tokens). You do not need OAuth2 to issue such a token!
 
 In particular you will find terminologies such as "Personal Access Tokens" or
-"API Keys" in the wild. These type of tokens are not the result of OAuth2 flows!
+"API Keys" in the wild. These types of tokens are not the result of OAuth2 flows!
 They use systems like
 [Kong's Key Authentication Plugin](https://docs.konghq.com/hub/kong-inc/key-auth/)
 or a simple service.
