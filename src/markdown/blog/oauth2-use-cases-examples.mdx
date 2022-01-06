@@ -69,29 +69,29 @@ authorization. As a company, we also help others audit and vet their systems. As
 such we often see OAuth 2 and OIDC used in the wrong context. This doesn't
 happen because people make mistakes or don't "get" security. It happens because
 the protocols are complex and often quite vague. When used in the wrong
-context - which is often the case - it can lead to serious security
+context - which often is the case - it can lead to serious security
 vulnerabilities. So far we've identified over 12 cases where incorrect
 implementation of OAuth2 and OpenID Connect was responsible for low-severity
-security issues (e.g. logout does not properly invalidate sessions) as well as
-catastrophic vulnerabilities (account hijacking with full administrative
+security issues (e.g. logout not properly invalidating sessions) as well as
+catastrophic vulnerabilities (such as account hijacking with full administrative
 privilege escalation). The scary part is that it can happen to any company of
 any size - regardless of how talented their developers are!
 
 At Ory, we don't sell OAuth2 and OpenID Connect as the "holy grail" solution.
-While the two are very powerful protocols when used correctly and have many
+While the two are very powerful protocols when used correctly, and have many
 advantages and use cases, the truth is that they are not always necessary. In
 fact, you most likely do not need them. Before we continue, be aware that there
-are two primary use cases when implementing OAuth2 / OpenID Connect and this article only
-covers the latter:
+are two primary use cases where you are implementing OAuth2 / OpenID Connect and that this article only
+covers one of them:
 
 1. Being a consumer of OAuth2 / OpenID Connect: you implement "Sign in with
    Google," need access to a user's GitHub account and other user cases. Here,
    OAuth2 makes a ton of sense. This article does not cover this use case.
 2. Being a provider of OAuth2 / OpenID Connect: You want to become the system
-   that issues OAuth2 Access Tokens, OpenID Connect ID Tokens, ... - this
+   that issues OAuth2 Access Tokens, OpenID Connect ID Tokens, etc. This
    article is for you!
 
-Now that we set the scene, let's look at the structure of this article. Similar
+Now that we've set the scene, let's look at the structure of this article. Similar
 to OAuth2 and OpenID Connect (and accompanying RFC8252, RFC6819, RFC7636,
 RFC8628, RFC 7523, OpenID Connect Discovery, OpenID Connect Session Management,
 OpenID Connect Front-/Backchannel Logout, ...) this article is lengthy because
@@ -108,8 +108,8 @@ Let's look at the main points covered in this article.
 Before we dive deeper, I want to stress two points:
 
 1. We have the utmost respect for the amount of innovation spawned by researchers
-   and contributors in the area of OAuth2 and OpenID Connect and this article
-   does not diminish their impressive work. We rather intend to shift the
+   and contributors in the area of OAuth2 and OpenID Connect. This article
+   does not try to diminish their impressive work. Rather, we intend to shift the
    mindset of small and medium-sized teams from "we need this complex security
    thing" to "we can solve this complex thing at a later stage and use something
    really simple for now!"
@@ -190,8 +190,8 @@ Games) and sometimes abused (e.g.
 [Cambridge Analytica Scandal](https://en.wikipedia.org/wiki/Facebook–Cambridge_Analytica_data_scandal)).
 
 Furthermore in 2012, "Social Login" was
-[all the craze](https://www.forbes.com/sites/forbesleadershipforum/2012/02/28/how-social-login-is-changing-business-and-your-privacy/)
-and still is!
+[all the craze.](https://www.forbes.com/sites/forbesleadershipforum/2012/02/28/how-social-login-is-changing-business-and-your-privacy/)
+(And still is!)
 
 OAuth2 and OpenID Connect were born to solve these two fundamental use cases:
 
@@ -267,9 +267,9 @@ trying to access your user's data. And someone else is trying to authenticate
 their users using your data!
 
 Your first point of decision is exactly this. Are you building a system that
-interacts with third parties, such as partner networks, platform APIs? Or are
+interacts with third parties, such as partner networks and platform APIs? Or are
 you yourself becoming the next "Sign in with ..."? If so, OAuth2 and OpenID
-Connect are the best protocols in class to address your use case!
+Connect are the best-in-class protocols to address your use case!
 
 ## Avoid OAuth2 / OpenID Connect for First Party Applications (With Exceptions)
 
@@ -318,12 +318,12 @@ their Amazon store.
 #### Niche Clients
 
 Another exception is if you plan interaction with a lot of different client
-types and in particular clients that do not have a traditional user interface
+types. This in particular applies to clients that do not have a traditional user interface
 (think Fire TV Stick, Chromecast, anything that does not feature a keyboard/USB
 port or browser). In this case you can benefit from the work done by the IETF
 and OpenID Foundation who have defined interactions for these types of clients.
 
-Example for niche clients can be:
+Some examples of niche clients could be:
 
 - SmartTVs because they do not have a keyboard, mouse, or USB port (for e.g.
   YubiKeys), making log in and sign up frustrating or impossible
@@ -332,23 +332,23 @@ Example for niche clients can be:
 
 #### Integration with Many Other Services
 
-Adding OAuth2 and OpenID Connect to your system, so not using it as the primary
+Adding OAuth2 and OpenID Connect to your system, where you're not using it as the primary
 authentication system for your own services, is beneficial if you use other
-tools and services and they should use the central identity platform to
+tools and services which should use the central identity platform to
 authenticate users.
 
-Examples for can be tools like:
+Examples of these tools could be:
 
 - [Rocket Chat](https://docs.rocket.chat/guides/administration/misc.-admin-guides/authentication/open-id-connect)
   where users sign up at a service and are able to also enter a chat room by
   logging into Rocket Chat using your OpenID Connect server.
-- A lot of SaaS tools that offer Enterprise SSO plans, like
+- SaaS tools that offer Enterprise SSO plans, like
   [Typeform](https://www.typeform.com/help/a/set-up-sso-authentication-for-your-account-for-enterprise-customers-360060078751/).
 - Other software products offering SSO via OpenID Connect.
 
 In these cases you have to weigh whether you want to use one authentication
-methodology for first parties, and another one (OpenID Connect) for third
-parties, or whether you want to use OpenID Connect for both. The decision here
+methodology for first parties and another one (OpenID Connect) for third
+parties, or whether you want to use OpenID Connect for both. This decision 
 depends a lot on context but neither of the two options are more or less
 difficult to implement.
 
@@ -365,7 +365,7 @@ use as implementing only OAuth2 for first and third-party.
 ## Complexity and Inherently Insecure Systems
 
 Making things hard to understand and implement never improves security. It makes
-systems less secure because there are more things that can (and eventually will)
+systems less secure since there are more things that can (and eventually will)
 go wrong. OAuth2 and accompanying specifications are plentiful, difficult to
 read and understand, and sometimes vague. When interacting with popular OAuth2
 and OpenID Connect providers (Facebook, Google, Amazon, ...) you will observe
@@ -405,18 +405,17 @@ there are so many variations and possibilities:
 - [OAuth 2.0 Token Revokation](https://datatracker.ietf.org/doc/html/rfc7009)
 - [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662)
 - [OpenID Connect Session Management](https://openid.net/specs/openid-connect-session-1_0.html)
-- [OpenID Connect Font-Channel Logout](https://openid.net/specs/openid-connect-frontchannel-1_0.html)
+- [OpenID Connect Front-Channel Logout](https://openid.net/specs/openid-connect-frontchannel-1_0.html)
 - [OpenID Connect Back-Channel Logout](https://openid.net/specs/openid-connect-backchannel-1_0.html)
 - [OpenID Connect Federation](https://openid.net/specs/openid-connect-federation-1_0.html)
 - [OpenID Connect SSE](https://openid.net/wg/sse/)
 - [OpenID Connect CAEP](https://openid.net/specs/openid-caep-specification-1_0-ID1.html)
 
-This list is long, but there is an even longer list of RFCs and specs under
-active development and draft status. Besides these more generic specs, there are
+This list is long, but there is an even longer list of draft and active development RFCs and specifications. Alongside these more generic specs, there are
 also specs for financial institutions (FAPI), governments (iGov), EAP, MODRNA,
 and many more.
 
-So the question is: do you really need all of this? Or should we simply solve
+So the question remains: do you really need all of this? Or should we simply solve
 login and move on until we actually need to address a critical need?
 
 ## OAuth2 is Difficult in Some Use Cases
@@ -474,15 +473,15 @@ problem! Citing from their
 
 You probably know [CircleCI](https://circleci.com), it's a continuous
 integration platform that runs tests on your code. Naturally, CircleCI needs
-access to your GitHub or GitLab repositories and they use GitHub's / GitLab's
-OAuth2 capabilities to do so.
+access to your GitHub or GitLab repositories which means it uses GitHub's / GitLab's
+OAuth2 capabilities.
 
-The catch is, if you have authenticated at CircleCI via GitHub, and you log out
-of GitHub, you will still be signed in to CircleCI! The same applies if you use
-an app using "Sign in with {anything really}". It does not matter to the third
+The catch is if you signed in to CircleCI via GitHub, and you log out
+of GitHub. You will still be signed in to CircleCI! The same applies if you use
+an app using "Sign in with {anything really}". With OAuth2 it does not matter to the third
 party what your session status is at the first party!
 
-At Ory, we are answering this question on a regular basis: _"I have implemented
+At Ory, we get (and answer) this question on a regular basis: _"I have implemented
 OAuth2 but how do I globally sign out my users?"_.
 [There](https://openid.net/specs/openid-connect-backchannel-1_0.html)
 [is a](https://openid.net/specs/openid-connect-frontchannel-1_0.html)
@@ -514,7 +513,7 @@ OpenID Connect) are involved:
 
 Browsers have three principal ways to persist data on the client:
 
-1. Cookies which can only be set by the server (`httpOnly`).
+1. Cookies which only can be set by the server (`httpOnly`).
 2. Cookies which can be set by the client (JavaScript's `document.cookie` -
    vulnerable to XSS).
 3. LocalStorage which can be set by the client (JavaScript's `localStorage` -
@@ -526,8 +525,8 @@ applications today are client-side and do not have direct access to a web
 server. So storing it in a `httpOnly` cookie might be the most secure variant,
 but it is also the most inconvenient one!
 
-There are several opinions and considerations to be made. We collected a few of
-the most interesting discussions:
+There are several opinions and considerations to be made. We've collected a few of
+the most interesting discussions for further reading:
 
 1. [How to store access token? (Oauth 2, Auth code flow)](https://stackoverflow.com/questions/44324080/how-to-store-access-token-oauth-2-auth-code-flow/44655679)
 2. [Should we store access token in our database for oauth2?](https://security.stackexchange.com/questions/72475/should-we-store-accesstoken-in-our-database-for-oauth2)
@@ -541,26 +540,26 @@ Tokens and OAuth2 Authorization Codes. Token Replay mitigation means that if you
 use the same Refresh Token, or Authorization Code twice, the request will fail
 and **all associated access, refresh, and authorization codes will be
 invalidated**. This means that your user has to redo the whole OAuth2 flow from
-the start!
+the beginning!
 
 And unfortunately this happens quite a lot. It can be a bug in your system, or
 it can be two services making a request at the same time with a token that needs
 to be refreshed. Preventing these types of race conditions is challenging in
 front end applications - you will need a good side effect solution such as
-[Redux Saga](https://redux-saga.js.org) - to ensure that only one API call is
-refreshing the token at a time. In distributed systems, this becomes even more
+[Redux Saga](https://redux-saga.js.org) to ensure that only one API call is
+refreshing the token at a time. In distributed systems this becomes even more
 difficult!
 
 Of course there are solutions to this problem as well, such as having a grace
 period (e.g. a few seconds) where the refresh token can be reused. Yet it adds
 another layer of complexity and potential flakiness to your system. What happens
 if your system is under heavy load? Will the racy refresh requests be fast
-enough? What happens if things time out? Or you need to retry? Should you
+enough? What happens if things time out? Or if you need to retry? Should you
 deactivate token reuse detection completely? But then you might fail the
 security audit!
 
 There are no clear answers to this. It takes time, research, testing, and
-development to make the right decisions.
+iteration to make the right decisions.
 
 ### The Human Aspect: Scaling Teams
 
@@ -572,15 +571,14 @@ to 20.000 developers as it is to build a search engine which replies to any
 query in less than 50 ms wherever you are on the planet.
 
 I started Ory a few years back and have since scaled it from a one-man show to a
-company of almost 30 people (a comparatively small number in comparison).
-Meanwhile, I've witnessed the community grow and struggle with OAuth2 and OpenID
+company of almost 30 people (a comparatively small number).
+Throughout this, I've witnessed the community grow and struggle with OAuth2 and OpenID
 Connect terminology, complexity, and tooling. In hindsight, it's clear that
-scaling development (the human side) with complex protocols is challenging as
+scaling development (the human side) with complex protocols is challenging since
 there is a high barrier for entry and a steep learning curve. What's the
 difference between a resource server, a resource owner, a third party client, a
 relying party, an ID token, the refresh token and the PKCE verifier? All of this
-has to be taught and learned and any new team member touching these systems
-should and must fully understand all of these principles. Sure, there are tons
+has to be taught and understood by any new team member touching these systems. Sure, there are tons
 of resources out there. But which one **applies to your system**?
 
 ### First-Party Consent
@@ -654,7 +652,7 @@ are some examples of deprecated specifications:
   is becoming more and more difficult in today's locked-down cookie world.
 
 There are of course more abandoned and deprecated specifications. However, those
-never made it past the draft status and therefore I didn't include them. For
+never made it past the draft status and I therefore didn't include them. For
 this reason we only accept finalized RFCs and specifications to
 [Ory Fosite](http://github.com/ory/fosite) and
 [Ory Hydra](http://github.com/ory/hydra)!
@@ -695,8 +693,8 @@ OAuth2 to be secure.
 
 ### We want to use JSON Web Tokens, thus we need OAuth2.
 
-You can use JSON Web Tokens without OAuth2. These two are different standards
-and you can use them independently! See the section above.
+You can use JSON Web Tokens without OAuth2. These are two different standards
+which can be used independently! See the section above.
 
 ### We can use OAuth2 for permissions!
 
@@ -712,14 +710,13 @@ developing, and maintaining your OAuth2 and OpenID Connect services and
 integration tools.
 
 Another valid case is if you are building a platform wherein third parties need
-access to your system, and you would like to use one standard method of
-authentication. Here too it might make sense to start using OAuth2 and OpenID
-Connect immediately.
+access to your system. Here too it might make sense to start using OAuth2 and OpenID
+Connect immediately to maintain one standard method of authentication.
 
-If you are a small team, a start-up, a company with a single product, you will
+If you are a small team, a start-up, or a company with a single product you will
 not need it unless you fall under one of the exceptions listed in this article.
-And if you still decide to go this route, be prepared to spend considerable
-amounts of time and development resources to get it right.
+And if you still decide to go this route, be prepared to spend a considerable
+amount of time and development resources to get it right.
 
 ### OAuth2 and OpenID Connect are the "best we've got."
 
@@ -787,7 +784,7 @@ knowledge to start building your system without spending restless nights on
 things you don't need yet, figuring out all the intricate details of OAuth2 and
 OpenID Connect!
 
-You have a different opinion on this topic or enjoyed the read? Write me on
+Do you have a different opinion on this topic or did you just enjoy the read? Write me on
 [Twitter](https://twitter.com/_aeneasr) or follow me on
 [GitHub](http://github.com/aeneasr).
 
