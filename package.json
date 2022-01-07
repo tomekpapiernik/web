@@ -70,7 +70,13 @@
     "use-sse": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/react": "^6.4.9",
     "@trivago/prettier-plugin-sort-imports": "^2.0.2",
+    "babel-loader": "^8.2.3",
     "ory-prettier-styles": "~1.1.1",
     "prettier": "~2.3.2"
   },
@@ -93,7 +99,9 @@
     "deploy": "netlify deploy --prod --dir=public/",
     "deploy:draft": "netlify deploy --dir=public/",
     "tcm": "tcm src -c",
-    "dev:tcm": "tcm src -c -w"
+    "dev:tcm": "tcm src -c -w",
+    "dev:storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
