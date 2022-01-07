@@ -80,11 +80,12 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "next start",
-    "dev": "next dev",
+    "dev": "run-p dev:*",
+    "start": "next start -p 8000",
+    "dev:next": "next dev -p 8000",
     "build": "cross-env NODE_ENV=production LOG_LEVEL=debug npm-run-all tcm build:clean build:site build:docs",
     "build:clean": "rm -Rf public/* .cache/* || exit 0",
-    "build:site": "cross-env APP_ENV=browser next build--no-color",
+    "build:site": "cross-env APP_ENV=browser next build",
     "build:docs": "node --stack-size=4000 build.js",
     "format": "prettier --write ${npm_package_config_prettierTarget}",
     "format:check": "prettier --check ${npm_package_config_prettierTarget}",
@@ -92,7 +93,7 @@
     "deploy": "netlify deploy --prod --dir=public/",
     "deploy:draft": "netlify deploy --dir=public/",
     "tcm": "tcm src -c",
-    "tcm:watch": "tcm src -c -w"
+    "dev:tcm": "tcm src -c -w"
   },
   "repository": {
     "type": "git",
