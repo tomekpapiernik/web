@@ -84,7 +84,7 @@ are two primary use cases where you are implementing OAuth2 / OpenID Connect and
 covers one of them:
 
 1. Being a consumer of OAuth2 / OpenID Connect: you implement "Sign in with
-   Google," need access to a user's GitHub account and other user cases. Here,
+   Google," need access to a user's GitHub account and other use cases. Here,
    OAuth2 makes a ton of sense. This article does not cover this use case.
 2. Being a provider of OAuth2 / OpenID Connect: You want to become the system
    that issues OAuth2 Access Tokens, OpenID Connect ID Tokens, etc. This
@@ -131,7 +131,7 @@ primary interaction protocol. And as we will learn in this article, it is most
 often too complex with too many edge cases.
 
 But that doesn't mean that there isn't a better way to solve these problems!
-Ory's attempt at building a better identity authentication de-factor open
+Ory's attempt at building a better identity authentication de-facto open
 standard is the [Ory Kratos Open Source project](https://github.com/ory/kratos)!
 
 A generic decision tree to help you decide whether you need OAuth2 or not can be
@@ -149,7 +149,7 @@ summarized as follows:
 </p>
 
 Since you're reading this on the Ory website and we believe in the products we
-build, you will find those prominently in the matrix. For comparable products we
+build, you will find those prominently in the above graph. For comparable products we
 have collected the following **open source** ones:
 
 1. If you need both an identity platform, implying that you most likely need to
@@ -583,7 +583,7 @@ of resources out there. But which one **applies to your system**?
 ### First-Party Consent
 
 A good question to ask yourself when deciding whether or not you need OAuth2 /
-OpenID Connect is this if you want them to see a screen similar to the following
+OpenID Connect is whether you want users to see a screen similar to the following
 one:
 
 ![GitHub OAuth2 Prompt Screen](../../images/articles/oauth2-use-cases-examples/github-oauth2-prompt.png)
@@ -602,7 +602,7 @@ OAuth2 tokens have a scope. The scope is usually something like `read:user` or
 > [_Source_](https://www.scottbrady91.com/oauth/oauth-is-not-user-authorization)
 
 An access token represents that the client application has been authorized by
-the user. It states what a user told a third party application (consent!) can do
+the user. It states what a user said (consent!) a third party application can do
 in their name. Let's take a quick look at the OAuth2 flow:
 
 1. The client application asks the user if they can access a protected resource
@@ -635,7 +635,7 @@ said before **complexity kills security**.
 
 ### Specs and RFCs Deprecate like Everything Else in Technology
 
-Specifications are suspect to change and deprecation as any other system. RFCs
+Specifications are subject to change and deprecation as any other system. RFCs
 and specifications are not timeless and do not protect against breaking changes,
 upgrading systems, changing configurations, or deprecating specific flows. Here
 are some examples of deprecated specifications:
@@ -660,7 +660,7 @@ this reason we only accept finalized RFCs and specifications to
 
 In this section we have collected questions and statements we have seen and read
 over the years. We hope that our answers can help you convince your peers to go
-one or the other way!
+one way or the other!
 
 ### Our API needs Tokens, thus we need OAuth2!
 
