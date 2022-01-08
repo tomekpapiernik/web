@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: staging
+  commit_messages:
+    create: "cms({{collection}}): create “{{slug}}”"
+    update: "cms({{collection}}): update “{{slug}}”"
+    delete: "cms({{collection}}): delete “{{slug}}”"
+    uploadMedia: "cms: upload “{{path}}”\n\n[skip actions]"
+    deleteMedia: "cms: delete “{{path}}”\n\n[skip actions]"
+
+local_backend: true
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: "blog"
+    label: "Blog posts"
+    label_singular: "Blog post"
+    folder: "src/markdown/blog"
+    format: yaml-frontmatter
+    extension: "mdx"
+    slug: "{{path}}"
+    preview_path_date_field: publishedAt
+    summary: "{{publishedAt}} {{title}}"
+
+    create: true
+    publish: false
+    delete: false
+
+    media_folder: ''
+    public_folder: ''
+    sortable_fields:
+      - "publishedAt"
+      - "author"
+      - "title"
+      - "featuredpost"
+    view_filters:
+      - label: Drafts
+        field: published
+        pattern: false
+    view_groups:
+      - label: Category
+        field: category
+      - label: Year
+        field: publishedAt
+        pattern: \d{4}
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Path", name: "path", widget: "string",  }
+      - { label: "Author", name: "author", widget: "string" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        pattern: ['.{12,}', "Must have at least 12 characters"]
+      - { label: "Teaser", name: "teaser", widget: "string" }
+      - { label: "Sub-title", name: "subtitle", widget: "string" }
+      - { label: "Over line", name: "overline", widget: "string" }
+      - { label: "Publish Date", name: "publishedAt", widget: "datetime", "date_format": "YYYY-MM-DD", "format": "YYYY-MM-DD" }
+      - { label: "Published", name: "published", widget: "boolean", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
+      - { label: "Featured Image", name: "featuredimage", widget: image, required: false }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }
