@@ -14,16 +14,3 @@ import './src/styles/grid.css'
 import './src/styles/icons.css'
 import './src/styles/themes/default.css'
 import './src/styles/typography.css'
-
-if (window && process.env.NODE_ENV === 'production') {
-  const script = document.createElement('script')
-  script.src = '/scripts.js'
-  document.body.appendChild(script)
-  script.onload = () => window.initAnalytics()
-}
-
-export const onRouteUpdate = () => {
-  if (window && typeof window.initAnalytics === 'function') {
-    window.initAnalytics()
-  }
-}

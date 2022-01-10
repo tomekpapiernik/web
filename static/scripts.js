@@ -99,5 +99,5 @@
         // Future sequential stuff that is dependent on consent banner goes here
       })
   }
-  window.initAnalytics = initAnalytics
+  initAnalytics()
 })();
