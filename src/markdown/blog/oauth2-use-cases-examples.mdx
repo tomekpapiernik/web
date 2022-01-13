@@ -5,7 +5,7 @@ title: Why you probably do not need OAuth2 / OpenID Connect
 
 seo:
   description: |
-         Learn when you really need to integrate OAuth2 and OpenID Connect!
+    Learn when you really need to integrate OAuth2 and OpenID Connect!
   title: Why you probably don't need OAuth2 / OpenID Connect!
 
 publishedAt: '2022-01-02'
@@ -80,22 +80,22 @@ At Ory, we don't sell OAuth2 and OpenID Connect as the "holy grail" solution.
 While the two are very powerful protocols when used correctly, and have many
 advantages and use cases, the truth is that they are not always necessary. In
 fact, you most likely do not need them. Before we continue, be aware that there
-are two primary use cases where you are implementing OAuth2 / OpenID Connect and that this article only
-covers one of them:
+are two primary use cases where you are implementing OAuth2 / OpenID Connect and
+that this article only covers one of them:
 
 1. Being a consumer of OAuth2 / OpenID Connect: you implement "Sign in with
    Google," need access to a user's GitHub account and other use cases. Here,
    OAuth2 makes a ton of sense. This article does not cover this use case.
 2. Being a provider of OAuth2 / OpenID Connect: You want to become the system
-   that issues OAuth2 Access Tokens, OpenID Connect ID Tokens, etc. This
-   article is for you!
+   that issues OAuth2 Access Tokens, OpenID Connect ID Tokens, etc. This article
+   is for you!
 
-Now that we've set the scene, let's look at the structure of this article. Similar
-to OAuth2 and OpenID Connect (and accompanying RFC8252, RFC6819, RFC7636,
-RFC8628, RFC 7523, OpenID Connect Discovery, OpenID Connect Session Management,
-OpenID Connect Front-/Backchannel Logout, ...) this article is lengthy because
-OAuth2 and OpenID Connect span a variety of specifications and regularly spawn
-new, innovative ones.
+Now that we've set the scene, let's look at the structure of this article.
+Similar to OAuth2 and OpenID Connect (and accompanying RFC8252, RFC6819,
+RFC7636, RFC8628, RFC 7523, OpenID Connect Discovery, OpenID Connect Session
+Management, OpenID Connect Front-/Backchannel Logout, ...) this article is
+lengthy because OAuth2 and OpenID Connect span a variety of specifications and
+regularly spawn new, innovative ones.
 
 Let's look at the main points covered in this article.
 
@@ -106,20 +106,20 @@ Let's look at the main points covered in this article.
 
 Before we dive deeper, I want to stress two points:
 
-1. We have the utmost respect for the amount of innovation spawned by researchers
-   and contributors in the area of OAuth2 and OpenID Connect. This article
-   does not try to diminish their impressive work. Rather, we intend to shift the
-   mindset of small and medium-sized teams from "we need this complex security
-   thing" to "we can solve this complex thing at a later stage and use something
-   really simple for now!"
+1. We have the utmost respect for the amount of innovation spawned by
+   researchers and contributors in the area of OAuth2 and OpenID Connect. This
+   article does not try to diminish their impressive work. Rather, we intend to
+   shift the mindset of small and medium-sized teams from "we need this complex
+   security thing" to "we can solve this complex thing at a later stage and use
+   something really simple for now!"
 2. Ory is developing an open-source identity infrastructure service called
    [Ory Kratos](https://github.com/ory/kratos) which is available
    [as a managed cloud service](https://www.ory.sh). This article discusses many
    of the reasons that initially motivated us to develop this new system. So
    yes, it's a shameless self-plug. But also: it's what we believe! There is a
    place in the software world for a secure, reliable, scalable and **simple**
-   solution. Our goal at Ory is to develop an open standard, with the help of
-   a brilliant community. We want something that works for 80% of use cases.
+   solution. Our goal at Ory is to develop an open standard, with the help of a
+   brilliant community. We want something that works for 80% of use cases.
 
 ## Do You Need OAuth2 or OpenID Connect?
 
@@ -149,8 +149,8 @@ summarized as follows:
 </p>
 
 Since you're reading this on the Ory website and we believe in the products we
-build, you will find those prominently in the above graph. For comparable products we
-have collected the following **open source** ones:
+build, you will find those prominently in the above graph. For comparable
+products we have collected the following **open source** ones:
 
 1. If you need both an identity platform, implying that you most likely need to
    migrate your user data as well, and an OAuth2 & OpenID Connect service and
@@ -164,8 +164,8 @@ have collected the following **open source** ones:
    1. Language-specific libraries such as
       [authboss](https://github.com/volatiletech/authboss) with the up- and
       downsides language-specific libraries have.
-   2. ~~[Supertokens](https://supertokens.io)~~ - we no longer endorse them due to
-      a questionable choice of mixing OAuth2 terminology with self-built
+   2. ~~[Supertokens](https://supertokens.io)~~ - we no longer endorse them due
+      to a questionable choice of mixing OAuth2 terminology with self-built
       protocols. In particular, the use of OpenID terminology without supporting
       the specification itself, and the use of "access" and "refresh tokens" in
       incorrect contexts. We believe this to be what
@@ -317,10 +317,11 @@ their Amazon store.
 #### Niche Clients
 
 Another exception is if you plan interaction with a lot of different client
-types. This in particular applies to clients that do not have a traditional user interface
-(think Fire TV Stick, Chromecast, anything that does not feature a keyboard/USB
-port or browser). In this case you can benefit from the work done by the IETF
-and OpenID Foundation who have defined interactions for these types of clients.
+types. This in particular applies to clients that do not have a traditional user
+interface (think Fire TV Stick, Chromecast, anything that does not feature a
+keyboard/USB port or browser). In this case you can benefit from the work done
+by the IETF and OpenID Foundation who have defined interactions for these types
+of clients.
 
 Some examples of niche clients could be:
 
@@ -331,9 +332,9 @@ Some examples of niche clients could be:
 
 #### Integration with Many Other Services
 
-Adding OAuth2 and OpenID Connect to your system, where you're not using it as the primary
-authentication system for your own services, is beneficial if you use other
-tools and services which should use the central identity platform to
+Adding OAuth2 and OpenID Connect to your system, where you're not using it as
+the primary authentication system for your own services, is beneficial if you
+use other tools and services which should use the central identity platform to
 authenticate users.
 
 Examples of these tools could be:
@@ -347,7 +348,7 @@ Examples of these tools could be:
 
 In these cases you have to weigh whether you want to use one authentication
 methodology for first parties and another one (OpenID Connect) for third
-parties, or whether you want to use OpenID Connect for both. This decision 
+parties, or whether you want to use OpenID Connect for both. This decision
 depends a lot on context but neither of the two options are more or less
 difficult to implement.
 
@@ -410,12 +411,13 @@ there are so many variations and possibilities:
 - [OpenID Connect SSE](https://openid.net/wg/sse/)
 - [OpenID Connect CAEP](https://openid.net/specs/openid-caep-specification-1_0-ID1.html)
 
-This list is long, but there is an even longer list of draft and active development RFCs and specifications. Alongside these more generic specs, there are
-also specs for financial institutions (FAPI), governments (iGov), EAP, MODRNA,
-and many more.
+This list is long, but there is an even longer list of draft and active
+development RFCs and specifications. Alongside these more generic specs, there
+are also specs for financial institutions (FAPI), governments (iGov), EAP,
+MODRNA, and many more.
 
-So the question remains: do you really need all of this? Or should we simply solve
-login and move on until we actually need to address a critical need?
+So the question remains: do you really need all of this? Or should we simply
+solve login and move on until we actually need to address a critical need?
 
 ## OAuth2 is Difficult in Some Use Cases
 
@@ -463,25 +465,25 @@ problem! Citing from their
 >    the user's information will be remembered. This session layer makes the SSO
 >    experience possible for inbound SSO implementations.
 > 3. Identity Provider Session Layer: When users attempt to sign in using an
->    identity provider such as Facebook or Google, and they already have a
->    valid sign-in (with whichever provider they choose) they will not be
->    prompted again to sign in though they may be asked to give permission to
->    share their information with Auth0 and, in turn, your application.
+>    identity provider such as Facebook or Google, and they already have a valid
+>    sign-in (with whichever provider they choose) they will not be prompted
+>    again to sign in though they may be asked to give permission to share their
+>    information with Auth0 and, in turn, your application.
 
 ### Session Management II: Logout
 
 You probably know [CircleCI](https://circleci.com), it's a continuous
 integration platform that runs tests on your code. Naturally, CircleCI needs
-access to your GitHub or GitLab repositories which means it uses GitHub's / GitLab's
-OAuth2 capabilities.
+access to your GitHub or GitLab repositories which means it uses GitHub's /
+GitLab's OAuth2 capabilities.
 
-The catch is if you signed in to CircleCI via GitHub, and you log out
-of GitHub. You will still be signed in to CircleCI! The same applies if you use
-an app using "Sign in with {anything really}". With OAuth2 it does not matter to the third
-party what your session status is at the first party!
+The catch is if you signed in to CircleCI via GitHub, and you log out of GitHub.
+You will still be signed in to CircleCI! The same applies if you use an app
+using "Sign in with {anything really}". With OAuth2 it does not matter to the
+third party what your session status is at the first party!
 
-At Ory, we get (and answer) this question on a regular basis: _"I have implemented
-OAuth2 but how do I globally sign out my users?"_.
+At Ory, we get (and answer) this question on a regular basis: _"I have
+implemented OAuth2 but how do I globally sign out my users?"_.
 [There](https://openid.net/specs/openid-connect-backchannel-1_0.html)
 [is a](https://openid.net/specs/openid-connect-frontchannel-1_0.html)
 [specification](https://openid.net/specs/openid-connect-session-1_0.html) for
@@ -524,8 +526,8 @@ applications today are client-side and do not have direct access to a web
 server. So storing it in a `httpOnly` cookie might be the most secure variant,
 but it is also the most inconvenient one!
 
-There are several opinions and considerations to be made. We've collected a few of
-the most interesting discussions for further reading:
+There are several opinions and considerations to be made. We've collected a few
+of the most interesting discussions for further reading:
 
 1. [How to store access token? (Oauth 2, Auth code flow)](https://stackoverflow.com/questions/44324080/how-to-store-access-token-oauth-2-auth-code-flow/44655679)
 2. [Should we store access token in our database for oauth2?](https://security.stackexchange.com/questions/72475/should-we-store-accesstoken-in-our-database-for-oauth2)
@@ -570,21 +572,21 @@ to 20.000 developers as it is to build a search engine which replies to any
 query in less than 50 ms wherever you are on the planet.
 
 I started Ory a few years back and have since scaled it from a one-man show to a
-company of almost 30 people (a comparatively small number).
-Throughout this, I've witnessed the community grow and struggle with OAuth2 and OpenID
-Connect terminology, complexity, and tooling. In hindsight, it's clear that
-scaling development (the human side) with complex protocols is challenging since
-there is a high barrier for entry and a steep learning curve. What's the
-difference between a resource server, a resource owner, a third party client, a
-relying party, an ID token, the refresh token and the PKCE verifier? All of this
-has to be taught and understood by any new team member touching these systems. Sure, there are tons
-of resources out there. But which one **applies to your system**?
+company of almost 30 people (a comparatively small number). Throughout this,
+I've witnessed the community grow and struggle with OAuth2 and OpenID Connect
+terminology, complexity, and tooling. In hindsight, it's clear that scaling
+development (the human side) with complex protocols is challenging since there
+is a high barrier for entry and a steep learning curve. What's the difference
+between a resource server, a resource owner, a third party client, a relying
+party, an ID token, the refresh token and the PKCE verifier? All of this has to
+be taught and understood by any new team member touching these systems. Sure,
+there are tons of resources out there. But which one **applies to your system**?
 
 ### First-Party Consent
 
 A good question to ask yourself when deciding whether or not you need OAuth2 /
-OpenID Connect is whether you want users to see a screen similar to the following
-one:
+OpenID Connect is whether you want users to see a screen similar to the
+following one:
 
 ![GitHub OAuth2 Prompt Screen](../../images/articles/oauth2-use-cases-examples/github-oauth2-prompt.png)
 
@@ -670,8 +672,8 @@ Token (so-called pass-by-value tokens) to a random identifier (so-called
 pass-by-reference tokens). You do not need OAuth2 to issue such a token!
 
 In particular you will find terminologies such as "Personal Access Tokens" or
-"API Keys" in the wild. These types of tokens are not the result of OAuth2 flows!
-They use systems like
+"API Keys" in the wild. These types of tokens are not the result of OAuth2
+flows! They use systems like
 [Kong's Key Authentication Plugin](https://docs.konghq.com/hub/kong-inc/key-auth/)
 or a simple service.
 
@@ -709,8 +711,8 @@ developing, and maintaining your OAuth2 and OpenID Connect services and
 integration tools.
 
 Another valid case is if you are building a platform wherein third parties need
-access to your system. Here too it might make sense to start using OAuth2 and OpenID
-Connect immediately to maintain one standard method of authentication.
+access to your system. Here too it might make sense to start using OAuth2 and
+OpenID Connect immediately to maintain one standard method of authentication.
 
 If you are a small team, a start-up, or a company with a single product you will
 not need it unless you fall under one of the exceptions listed in this article.
@@ -783,8 +785,8 @@ knowledge to start building your system without spending restless nights on
 things you don't need yet, figuring out all the intricate details of OAuth2 and
 OpenID Connect!
 
-Do you have a different opinion on this topic or did you just enjoy the read? Write me on
-[Twitter](https://twitter.com/_aeneasr) or follow me on
+Do you have a different opinion on this topic or did you just enjoy the read?
+Write me on [Twitter](https://twitter.com/_aeneasr) or follow me on
 [GitHub](http://github.com/aeneasr).
 
 Thank you for reading and see you next time! Maybe in the
