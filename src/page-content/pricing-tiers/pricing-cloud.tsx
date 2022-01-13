@@ -63,7 +63,7 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
       price: '18',
       priceDescription: (
         <>
-          The first 900 applications get the Start Up plan for free!
+          The first 900 get the Start Up plan one year for free!
           <span className={cn('is-themed-primary', 'is-semibold')}>
             <sup> 1</sup>
           </span>
