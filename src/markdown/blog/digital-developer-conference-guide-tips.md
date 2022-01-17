@@ -23,6 +23,8 @@ overline: |
 We were stoked to pull off the first Ory Summit 2021 in October, bringing together an all-star group of developers who presented on the diverse ways in which they use Ory open source products. 
 We bootstrapped the two-day Ory Summit with a core team of three people, supported by the rest of Ory, plus the presenters, members of our open source community who were generous with their time and energy. 
 
+![The look of Ory Summit on stream](../../images/articles/how-to-summit/summit-deck.png)
+
 >All Ory Summit 2021 presentations can be watched again [here](https://www.ory.sh/summit/2021/). 
 
 Normally such events are executed with three times the amount of resources and time, so we had to find an efficient framework for making our first conference a success. In retrospect, we learned loads about how to run a live digital event for developer communities, and that’s what we want to share in this article.
