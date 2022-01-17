@@ -13,7 +13,7 @@ seo:
   description: |
     How to make a virtual developer conference a success, what you should pay attention to, and how to prevent mistakes.
 
-publishedAt: '2022-01-19'
+publishedAt: '2022-01-17'
 author: vinckr
 
 overline: |
