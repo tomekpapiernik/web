@@ -2,16 +2,16 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: "doc({{collection}}): create “{{slug}}”"
-    update: "cms({{collection}}): update “{{slug}}”"
-    delete: "cms({{collection}}): delete “{{slug}}”"
+    create: "cms: create “{{slug}}”\n\nin {{collection}}"
+    update: "cms: update “{{slug}}”\n\nin {{collection}}"
+    delete: "cms: delete “{{slug}}”\n\nin {{collection}}"
     uploadMedia: "cms: upload “{{path}}”\n\n[skip actions]"
     deleteMedia: "cms: delete “{{path}}”\n\n[skip actions]"
 
 local_backend: true
 media_folder: static/images
 public_folder: /images
-
+site_url: https://ory.sh
 publish_mode: editorial_workflow
 
 collections:
@@ -29,8 +29,7 @@ collections:
     publish: false
     delete: false
 
-    media_folder: ''
-    public_folder: ''
+    media_folder: 'media'
     sortable_fields:
       - "publishedAt"
       - "author"
@@ -55,15 +54,23 @@ collections:
         }
       - { label: "Path", name: "path", widget: "string",  }
       - { label: "Author", name: "author", widget: "string" }
-      - label: "Title"
-        name: "title"
-        widget: "string"
-        pattern: ['.{12,}', "Must have at least 12 characters"]
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: ['.{12,}', "Must have at least 12 characters"]
+        }
       - { label: "Teaser", name: "teaser", widget: "string" }
       - { label: "Sub-title", name: "subtitle", widget: "string" }
       - { label: "Over line", name: "overline", widget: "string" }
       - { label: "Publish Date", name: "publishedAt", widget: "datetime", "date_format": "YYYY-MM-DD", "format": "YYYY-MM-DD" }
-      - { label: "Published", name: "published", widget: "boolean", required: false }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          required: false
+        }
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
       - { label: "Featured Image", name: "featuredimage", widget: image, required: false }
