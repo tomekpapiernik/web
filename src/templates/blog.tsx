@@ -66,10 +66,11 @@ export function PlainBlogTemplate(props: PlainBlogTemplateProps) {
 }
 
 export default function BlogTemplate(props: any) {
-  const { mdx: { body, frontmatter } } = props.data // data.mdx holds our post data
+  const { mdx } = props.data; // data.mdx holds our post data
+  const { body = null, frontmatter = {} } = mdx || {};
   return (
     <PlainBlogTemplate frontmatter={frontmatter}>
-      <MDXRenderer>{body}</MDXRenderer>
+      {body && (<MDXRenderer>{body}</MDXRenderer>)}
     </PlainBlogTemplate>
   )
 }
