@@ -5,7 +5,7 @@
  */
 // You can delete this file if you're not using it
 import 'normalize.css'
-// import 'phosphor-icons/src/css/phosphor.css'
+import 'phosphor-icons/src/css/phosphor.css'
 import 'prismjs/themes/prism.css'
 import 'remark-admonitions/styles/classic.css'
 
