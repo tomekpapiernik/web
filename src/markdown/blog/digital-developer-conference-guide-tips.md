@@ -37,12 +37,12 @@ Ory services provide free and open identity infrastructure for a lot of differen
 
 #### 1. The Basics
 
-- **Know your audience**
+- **Know your audience**  
 It is hard to overstate how important this is. If you know your audience well, you'll understand what they expect from a community event and how to reach and engage them best. If you lack a clear picture of who your audience is, you may cast the net too wide.
 Ask yourself: Do you want to organize an event for a wide audience or the members of your community?
-- **Good internet connection**
+- **Good internet connection**  
 This is self-explanatory. If your internet connection is not tailored to support high-quality streaming, you'll have a bad time. 4-5mb/s up speed should be the minimum to stream in decent quality; more is better!
-- **Keep it simple**
+- **Keep it simple**  
 Don't overcomplicate the event. In practice, this means you have to cut certain activities/parts of the event. If a half-comatose person can follow your event proceedings, organization, and planning: you're doing it right. If people need a half-hour introduction into how everything works and they still don't get it, you have a problem, officer.
 
 
@@ -102,7 +102,7 @@ Here are several topics that we didn't delve into, but should be considered:
 - Interactive Workshops
 - Merchandise
 - Sponsors
-- Tickets (Free/Paid)
+- Tickets (Free/Paid)  
 ...and much more
 
 ![Ory Summit Headquarters](../../images/articles/how-to-summit/summit-kitchen.png)
