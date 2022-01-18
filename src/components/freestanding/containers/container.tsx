@@ -34,7 +34,8 @@ export interface PropTypes {
   smHidden?: boolean
   xsHidden?: boolean
   noWrap?: boolean
-  editMode?: false | true
+  editMode?: false | true,
+  component?: string | React.ComponentType<any>
 }
 
 const getFlex = (flex: string) => {
@@ -92,11 +93,12 @@ const Container = forwardRef(
       smHidden = false,
       xsHidden = false,
       editMode = false,
-      noWrap = false
+      noWrap = false,
+      component: Component = 'div',
     }: PropTypes,
     ref: any
   ) => (
-    <div
+    <Component
       ref={ref}
       className={cn(
         fluid && styles.containerFluid,
@@ -114,7 +116,7 @@ const Container = forwardRef(
       )}
     >
       {children}
-    </div>
+    </Component>
   )
 )
 
