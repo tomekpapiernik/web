@@ -134,6 +134,7 @@
     "start:gatsby": "npm run develop",
     "start:storybook": "npm run storybook",
     "start:netlifycmsproxy": "netlify-cms-proxy-server",
+    "start:tcm": "npm run tcm:watch",
     "serve": "gatsby serve",
     "nothing": "exit 0",
     "deploy": "netlify deploy --prod --dir=public/",
