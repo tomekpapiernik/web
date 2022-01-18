@@ -45,8 +45,9 @@ The text of your article...
 
 ### Development
 
-Use the `npm start` command will start a [Gatsby](https://gatsbyjs.org/) development server
-and a [Netlify CMS](https://www.netlifycms.org/) proxy server to work locally.  
+Use the `npm start` command will start a [Gatsby](https://gatsbyjs.org/) development server,
+a Storybook server (on port 6006) and a [Netlify CMS](https://www.netlifycms.org/) proxy server
+to work locally.  
 Alternatively, you can run `npm run start:gatsby` and `npm run start:netlifycmsproxy`
 (or `npx nodemon -w static/admin/config.yml -x 'npx netlify-cms-proxy-server'`) in separate terminals.
 
