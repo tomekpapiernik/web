@@ -10,7 +10,7 @@ const trimLeft = (s, charlist) => {
     return s.replace(new RegExp('^[s]+'), '')
   }
 
-  return s.replace(new RegExp('^[' + charlist + ']+'), '')
+  return (s || '').replace(new RegExp('^[' + charlist + ']+'), '')
 }
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
@@ -40,21 +40,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allMdx.edges.forEach(({ node }) => {
     let template = path.resolve(`src/templates/page.tsx`)
     let isSummit = false
+    let pagePath = `/${trimLeft(node.frontmatter.path, '/')}`
+
     if (node.fileAbsolutePath.indexOf('markdown/blog') > -1) {
       template = path.resolve(`src/templates/blog.tsx`)
+      pagePath = `/blog/post${pagePath}`
     } else if (node.fileAbsolutePath.indexOf('markdown/pages') > -1) {
       template = path.resolve(`src/templates/page.tsx`)
     } else if (node.fileAbsolutePath.indexOf('markdown/summit') > -1) {
-      isSummit = true
       template = path.resolve(`src/templates/summit.tsx`)
+      pagePath = `/summit/2021/${trimLeft(node.frontmatter.slug, '/')}/`
     } else if (node.fileAbsolutePath.indexOf('markdown/jobs') > -1) {
       template = path.resolve(`src/templates/jobs.tsx`)
     }
 
     createPage({
-      path: isSummit
-        ? `/summit/2021/${trimLeft(node.frontmatter.slug, '/')}/`
-        : `/${trimLeft(node.frontmatter.path, '/')}`,
+      path: pagePath,
       component: template,
       context: isSummit ? { slug: node.frontmatter.slug } : {}
     })

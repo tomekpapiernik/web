@@ -52,7 +52,12 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
-      - { label: "Path", name: "path", widget: "string",  }
+      - {
+          label: "Path",
+          name: "path",
+          widget: "string",
+          hint: "The post will be available at \"/blog/post/<the value of this field>\""
+        }
       - { label: "Author", name: "author", widget: "string" }
       - {
           label: "Title",
