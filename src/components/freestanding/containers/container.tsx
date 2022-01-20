@@ -36,6 +36,7 @@ export interface PropTypes {
   noWrap?: boolean
   editMode?: false | true,
   component?: string | React.ComponentType<any>
+  style?: React.CSSProperties
 }
 
 const getFlex = (flex: string) => {
@@ -95,6 +96,7 @@ const Container = forwardRef(
       editMode = false,
       noWrap = false,
       component: Component = 'div',
+      style,
     }: PropTypes,
     ref: any
   ) => (
@@ -114,6 +116,7 @@ const Container = forwardRef(
         lgHidden && getHidden('lg'),
         className && className
       )}
+      style={style}
     >
       {children}
     </Component>
