@@ -37,6 +37,7 @@ export interface PropTypes {
   editMode?: false | true,
   component?: string | React.ComponentType<any>
   style?: React.CSSProperties
+  id?: string
 }
 
 const getFlex = (flex: string) => {
@@ -97,6 +98,7 @@ const Container = forwardRef(
       noWrap = false,
       component: Component = 'div',
       style,
+      id,
     }: PropTypes,
     ref: any
   ) => (
