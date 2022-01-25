@@ -1,0 +1,23 @@
+---
+templateKey: blog
+path: securing-flask-application-using-kratos-and-keto
+author: gen1us2k
+title: Securing Your Flask Application Using Kratos and Keto
+teaser: Securing your flask application using kratos and keto
+subtitle: Let's build a flask application using Ory Kratos and Ory Keto
+overline: Securing flask application using Kratos and Keto
+publishedAt: 2022-01-25
+published: false
+description: ""
+tags: []
+---
+In this blog post, I will show you an example of how you can secure your homepage using Ory Kratos and Ory Keto. The Flask application will have the following flow for authorization:
+
+1. A user opens a homepage
+2. Flask view gets 'ory_kratos_session' value from request cookie
+3. Restrict access to the homepage if the user is inactive
+4. Get the user's identity from Kratos
+5. Restrict access to the homepage if we have no user's identity from Kratos
+6. Restrict access to the homepage if access is not allowed by Keto
+
+## 
