@@ -20,29 +20,20 @@ const createTagPages = (createPage, posts) => {
 
   const postsByTags = {}
 
-  const processTags = (node) => (arr) => arr
-    .filter(Boolean)
-    .forEach(tagName => {
-      const tagSlug = slugify(tagName)
-      if (!postsByTags[tagSlug]) {
-        postsByTags[tagSlug] = { posts: [], tagName: tagName.trim() }
-      }
-
-      if (postsByTags[tagSlug].posts.find(({id}) => id === node.id)) return;
-
-      postsByTags[tagSlug].posts.push(node)
-    })
-
-  posts.forEach(({node}) => {
-    if (node.frontmatter?.tags) {
-      processTags(node)(node.frontmatter.tags)
-    }
-    if (node.frontmatter?.category) {
-      processTags(node)([node.frontmatter.category])
-    }
-    if (node.frontmatter?.seo?.keywords) {
-      processTags(node)(node.frontmatter.seo.keywords.split(','))
-    }
+  posts.forEach(({ node }) => {
+    if (!node.frontmatter?.tags) return
+    node.frontmatter.tags
+      .filter(Boolean)
+      .forEach(tagName => {
+        const tagSlug = slugify(tagName)
+        if (!postsByTags[tagSlug]) {
+          postsByTags[tagSlug] = { posts: [], tagName: tagName.trim() }
+        }
+  
+        if (postsByTags[tagSlug].posts.find(({id}) => id === node.id)) return;
+  
+        postsByTags[tagSlug].posts.push(node)
+      })
   })
 
   const tags = Object.keys(postsByTags)

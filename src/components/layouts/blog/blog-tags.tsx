@@ -77,7 +77,7 @@ export const sortByName = (tags: Tag[]) => {
 
 export const normalizeTags = (raw: QueryTag[]): Tag[] => {
   return raw.reduce((acc, { node }) => {
-    const { tags, category, seo } = node.frontmatter || {}
+    const { tags } = node.frontmatter || {}
 
     const normalizedTags = (tags || []).map((tag: string) => {
       const slug = slugify(tag)
@@ -88,30 +88,6 @@ export const normalizeTags = (raw: QueryTag[]): Tag[] => {
         ids: [node.id]
       }
     })
-
-    if (category) {
-      const slug = slugify(category)
-
-      normalizedTags.push({
-        name: category,
-        slug,
-        ids: [node.id]
-      })
-    }
-
-    if (seo && seo.keywords) {
-      const keywords = seo.keywords.split(',').map((keyword: string) => {
-        const slug = slugify(keyword)
-
-        return {
-          name: keyword,
-          slug,
-          ids: [node.id]
-        }
-      })
-
-      normalizedTags.push(...keywords)
-    }
 
     ;(normalizedTags || []).forEach((tag) => {
       const index = findIndexBySlug(tag.name, acc)
