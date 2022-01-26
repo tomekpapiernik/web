@@ -36,7 +36,8 @@ import {
 import * as styles from './navigation.module.css'
 
 export interface DropdownMenuItem {
-  title: string | React.ReactElement
+  title: string
+  dotted?: boolean
   mainMenu?: Array<DropdownMainItem>
   sideMenu?: Array<DropdownSideItem>
 }
@@ -61,6 +62,7 @@ export interface MobileMenuItems {
 export interface DropdownMainItem {
   title: string
   description?: string
+  dotted?: boolean
   to: string
   openInNewWindow?: boolean
   iconLeft?: React.ReactElement
@@ -164,9 +166,10 @@ const Navigation = ({ logo, dropdownMenu, mobileMenu, sideNav }: PropTypes) => {
 
         <nav role={'navigation'} ref={currentNode} className={styles.flex}>
           <Container justify={'start'} smHidden={true} xsHidden={true}>
-            {dropdownMenu.map(({ title, mainMenu, sideMenu }, index) => (
+            {dropdownMenu.map(({ title, mainMenu, sideMenu, dotted }, index) => (
               <MenuItem
                 title={title}
+                dotted={dotted}
                 key={index}
                 className={cn(pr32)}
                 onClick={() =>
@@ -182,7 +185,14 @@ const Navigation = ({ logo, dropdownMenu, mobileMenu, sideNav }: PropTypes) => {
                   {mainMenu &&
                     mainMenu.map(
                       (
-                        { title, description, to, openInNewWindow, className },
+                        {
+                          title,
+                          description,
+                          to,
+                          openInNewWindow,
+                          dotted,
+                          className
+                        },
                         index
                       ) => (
                         <DropdownItem
@@ -192,6 +202,7 @@ const Navigation = ({ logo, dropdownMenu, mobileMenu, sideNav }: PropTypes) => {
                           openInNewWindow={openInNewWindow}
                           to={to}
                           title={title}
+                          dotted={dotted}
                           description={description}
                         />
                       )

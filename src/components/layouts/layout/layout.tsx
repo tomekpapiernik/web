@@ -12,7 +12,8 @@ import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
 
 import footer from '../../../page-content/navigation/footer.json'
-import * as nav from '../../../page-content/navigation/navigation-header'
+import { sideNav } from '../../../page-content/navigation/navigation-header'
+import nav from '../../../page-content/navigation/header.json'
 import Footer from '../footer/footer'
 import Navigation from '../navigation/navigation'
 import EventLayout from '../summit/event-layout'
@@ -33,9 +34,8 @@ const Layout = ({ children, theme, isEvent }: PropTypes) => {
     <div className={cn(styles.layout)}>
       <Navigation
         logo={oryLogoPrimary}
-        {...nav.sideNav}
-        {...nav.dropdownMenu}
-        {...nav.mobileMenu}
+        {...sideNav}
+        {...nav}
       />
       <main
         className={cn(
