@@ -40,9 +40,9 @@ const BlogPreview = (props: any) => {
   return (
     <PreviewLayout>
       <ErrorBoundary>
-        <Newsletter {...newsletter} />
-
         <FeaturedBlogPosts {...featured} />
+
+        <Newsletter {...newsletter} />
       </ErrorBoundary>
     </PreviewLayout>
   )

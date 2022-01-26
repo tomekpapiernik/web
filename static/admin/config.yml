@@ -23,6 +23,44 @@ collections:
         name: "blog"
         file: "src/page-content/content-blog.json"
         fields:
+          - label: "Featured"
+            name: "featured"
+            hint: Control which blog posts are featured on the blog
+            widget: "object"
+            fields:
+              - label: title
+                name: title
+                widget: "string"
+              - label: Big
+                name: big
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Top
+                name: top
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Bottom
+                name: bottom
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
           - label: Newsletter
             name: newsletter
             widget: "object"
@@ -69,44 +107,6 @@ collections:
                 widget: boolean
                 default: true
                 required: false
-          - label: "Featured"
-            name: "featured"
-            hint: Control which blog posts are featured on the blog
-            widget: "object"
-            fields:
-              - label: title
-                name: title
-                widget: "string"
-              - label: Big
-                name: big
-                widget: relation
-                collection: blogpost
-                value_field: path
-                search_fields:
-                  - path
-                  - title
-                display_fields:
-                  - title
-              - label: Top
-                name: top
-                widget: relation
-                collection: blogpost
-                value_field: path
-                search_fields:
-                  - path
-                  - title
-                display_fields:
-                  - title
-              - label: Bottom
-                name: bottom
-                widget: relation
-                collection: blogpost
-                value_field: path
-                search_fields:
-                  - path
-                  - title
-                display_fields:
-                  - title
           - label: "SEO"
             name: "seo"
             widget: "object"
@@ -142,7 +142,135 @@ collections:
                 label: URL
                 widget: string
                 required: false
-
+      - label: "Header navigation"
+        name: "navigationheader"
+        file: "src/page-content/navigation/header.json"
+        fields:
+          - label: Dropdown
+            label_singular: Dropdown
+            name: dropdownMenu
+            widget: list
+            fields:
+              - label: Menu category
+                name: title
+                widget: string
+              - label: Menu items
+                name: mainMenu
+                widget: list
+                fields:
+                - label: Title
+                  name: title
+                  widget: string
+                - label: To
+                  name: to
+                  widget: string
+                - label: Description
+                  name: description
+                  widget: string
+                - label: Dot
+                  name: dotted
+                  widget: boolean
+                  default: false
+                  required: false
+                - label: New window
+                  name: openInNewWindow
+                  widget: boolean
+                  default: true
+                  required: false
+          - label: Mobile
+            label_singular: Mobile
+            name: mobileMenu
+            widget: object
+            fields:
+              - label: Categories
+                name: mobileMenuCategories
+                widget: list
+                fields:
+                  - label: Menu category
+                    name: category
+                    widget: string
+                  - label: Menu items
+                    name: mobileMenuItems
+                    widget: list
+                    fields:
+                    - label: Title
+                      name: title
+                      widget: string
+                    - label: To
+                      name: to
+                      widget: string
+                    - label: Dot
+                      name: dotted
+                      widget: boolean
+                      default: false
+                      required: false
+                    - label: New window
+                      name: openInNewWindow
+                      widget: boolean
+                      default: true
+                      required: false
+      - label: "Footer navigation"
+        name: "navigationfooter"
+        file: "src/page-content/navigation/footer.json"
+        fields:
+          - label: Categories
+            label_singular: Category
+            name: category
+            widget: list
+            fields:
+              - label: Menu category
+                name: menuCategory
+                widget: string
+              - label: Menu items
+                name: menuItems
+                widget: list
+                fields:
+                - label: Title
+                  name: title
+                  widget: string
+                - label: To
+                  name: to
+                  widget: string
+                - label: Dot
+                  name: dotted
+                  widget: boolean
+                  default: false
+                  required: false
+                - label: New window
+                  name: openInNewWindow
+                  widget: boolean
+                  default: true
+                  required: false
+          - label: Legal
+            name: legal
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: To
+                name: to
+                widget: string
+              - label: New window
+                name: openInNewWindow
+                widget: boolean
+                default: true
+                required: false
+          - label: Social
+            name: social
+            widget: list
+            fields:
+              - label: Icon
+                name: icon
+                widget: string
+              - label: To
+                name: to
+                widget: string
+              - label: New window
+                name: openInNewWindow
+                widget: boolean
+                default: true
+                required: false
   - name: "blogpost"
     label: "Blog posts"
     label_singular: "Blog post"
@@ -152,11 +280,9 @@ collections:
     slug: "{{path}}"
     preview_path_date_field: publishedAt
     summary: "{{publishedAt}} {{title}}"
-
     create: true
     publish: false
     delete: false
-
     media_folder: 'media'
     sortable_fields:
       - "publishedAt"
