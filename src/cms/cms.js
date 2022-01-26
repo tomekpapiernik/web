@@ -3,10 +3,12 @@ import uploadcare from 'netlify-cms-media-library-uploadcare'
 
 import BlogPostPreview from './preview-templates/BlogPostPreview'
 import BlogPreview from './preview-templates/BlogPreview'
-import NavigationPreview from './preview-templates/NavigationPreview'
+import HeaderPreview from './preview-templates/HeaderPreview'
+import FooterPreview from './preview-templates/FooterPreview'
 
 CMS.registerMediaLibrary(uploadcare)
 
 CMS.registerPreviewTemplate('blogpost', BlogPostPreview)
 CMS.registerPreviewTemplate('blog', BlogPreview)
-CMS.registerPreviewTemplate('navigation', NavigationPreview)
+CMS.registerPreviewTemplate('layoutheader', HeaderPreview)
+CMS.registerPreviewTemplate('layoutfooter', FooterPreview)

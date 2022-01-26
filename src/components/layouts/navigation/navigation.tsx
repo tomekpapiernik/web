@@ -78,7 +78,7 @@ export interface PropTypes {
   logo: string
   dropdownMenu: Array<DropdownMenuItem>
   mobileMenu: MobileMenu
-  sideNav: React.ReactNodeArray
+  sideNav: React.ReactNode[]
 }
 
 const Minus = <i className={cn(pl8, 'ph-minus-fill size24')} />
