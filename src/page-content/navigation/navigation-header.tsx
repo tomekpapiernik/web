@@ -53,7 +53,7 @@ export const dropdownMenu: Pick<NavProps, 'dropdownMenu'> = {
           to: '/kratos'
         },
         {
-          title: 'OAuth 2.0 & OpenIDConnect',
+          title: 'OAuth 2.0 & OpenID Connect',
           description: 'Ory Hydra',
           to: '/hydra'
         },
