@@ -22,4 +22,6 @@ Primary.args = {
 }
 
 export const Secondary = Template.bind({})
-Secondary.args = {}
+Secondary.args = {
+  tabs: []
+}
