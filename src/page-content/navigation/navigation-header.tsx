@@ -161,7 +161,7 @@ export const mobileMenu: Pick<NavProps, 'mobileMenu'> = {
             to: '/kratos'
           },
           {
-            title: 'OAuth 2.0 & OpenIDConnect',
+            title: 'OAuth 2.0 & OpenID Connect',
             to: '/hydra'
           },
           {
