@@ -10,7 +10,7 @@ interface PropType {
   children?: React.ReactElement
   dotted?: boolean
   className?: string
-  onClick: () => void
+  onClick: string | (() => void)
 }
 
 const MenuItem = ({ className, title, dotted, onClick, children }: PropType) => (
@@ -25,7 +25,7 @@ const MenuItem = ({ className, title, dotted, onClick, children }: PropType) => 
           {children}
         </>
       ) : (
-        <div onClick={onClick}>{title}</div>
+        <div onClick={typeof onClick === 'function' ? onClick : () => {}}>{title}</div>
       )}
       {dotted ? (<span className={cn('dot')} />) : null}
     </li>

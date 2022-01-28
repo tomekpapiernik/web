@@ -177,6 +177,17 @@ collections:
                   widget: boolean
                   default: true
                   required: false
+              - label: To
+                name: to
+                widget: string
+                default: null
+                required: false
+                hint: If this field is used, the menu items will not be visible
+              - label: Dot
+                name: dotted
+                widget: boolean
+                default: false
+                required: false
           - label: Mobile
             label_singular: Mobile
             name: mobileMenu
