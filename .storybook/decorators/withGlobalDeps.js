@@ -20,6 +20,8 @@ import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-yaml'
 
+import './storybook-globals.css'
+
 export default function withGlobalDeps(Story) {
   return <Story />
 }
