@@ -13,53 +13,64 @@
   },
   "tags": [
     {
-      "name": "Identity",
-      "description": ""
+      "name": "Access Control"
     },
     {
-      "name": "Product"
-    },
-    {
-      "name": "Security & Compliance"
-    },
-    {
-      "name": "Passwordless"
-    },
-    {
-      "name": "Build vs Buy"
-    },
-    {
-      "name": "Company updates"
-    },
-    {
-      "name": "Guide"
-    },
-    {
-      "name": "Authentication as a service"
-    },
-    {
-      "name": "Self Service"
-    },
-    {
-      "name": "Open Source"
-    },
-    {
-      "name": "User Management"
+      "name": "API Security"
     },
     {
       "name": "Architecture"
     },
     {
+      "name": "Authentication"
+    },
+    {
+      "name": "Best Practices"
+    },
+    {
+      "name": "Build vs Buy"
+    },
+    {
       "name": "Case Study"
     },
     {
-      "name": "Zero Trust"
+      "name": "Company Updates"
+    },
+    {
+      "name": "Federation"
+    },
+    {
+      "name": "Guest Author"
+    },
+    {
+      "name": "Guide"
+    },
+    {
+      "name": "Identity"
+    },
+    {
+      "name": "Open Source"
+    },
+    {
+      "name": "Ory Cloud"
+    },
+    {
+      "name": "Passwordless"
+    },
+    {
+      "name": "Security & Compliance"
+    },  
+    {
+      "name": "Serverless"
     },
     {
       "name": "Testing"
     },
     {
-      "name": "Qualitity Assurance"
+      "name": "User Management"
+    },
+    {
+      "name": "Zero Trust"
     }
   ],
   "featured": {

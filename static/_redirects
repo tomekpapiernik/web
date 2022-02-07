@@ -271,3 +271,13 @@ https://www.ory.sh/docs/early-access/ https://www.ory.sh/docs/cloud/cloud-roadma
 # These redirects are URL shorthands returned by Ory Cloud APIs. They are used
 # by users to look up more information about the issue.
 https://www.ory.sh/dr/1 https://www.ory.sh/docs/debug/smtp-courier-1 302!
+
+# Ory Blog Categories Redirects
+
+https://www.ory.sh/blog/tag/authentication-as-a-service https://www.ory.sh/blog/tag/authentication 302!
+
+https://www.ory.sh/blog/tag/self-service https://www.ory.sh/blog/tag/authentication 302!
+
+https://www.ory.sh/blog/tag/product https://www.ory.sh/blog/tag/ory-cloud 302!
+
+https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/quality-assurance 302!
