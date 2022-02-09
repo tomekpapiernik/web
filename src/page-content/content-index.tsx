@@ -1,4 +1,4 @@
-import {StaticImage} from 'gatsby-plugin-image'
+import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
 import Button from '../components/freestanding/button/button'
@@ -6,17 +6,18 @@ import CodeBox, {
   Languages,
   PropTypes as CodeBoxProps
 } from '../components/freestanding/codebox/codebox'
-import {PropTypes as CodingProps} from '../components/layouts/coding/coding'
-import {PropTypes as FeatureContentProps} from '../components/layouts/feature-content/feature-content'
-import {PropTypes as HeroProps} from '../components/layouts/hero/hero'
-import {PropTypes as QuickstartProps} from '../components/layouts/quickstart/quickstart'
-import {PropTypes as SeoProps} from '../components/layouts/seo/seo'
-import {PropTypes as HeroImageProps} from "../components/layouts/hero/hero-image";
-import Cloud from "../images/illustrations/hero.png";
+import { PropTypes as CodingProps } from '../components/layouts/coding/coding'
+import { PropTypes as FeatureContentProps } from '../components/layouts/feature-content/feature-content'
+import { PropTypes as HeroProps } from '../components/layouts/hero/hero'
+import { PropTypes as HeroImageProps } from '../components/layouts/hero/hero-image'
+import { PropTypes as QuickstartProps } from '../components/layouts/quickstart/quickstart'
+import { PropTypes as SeoProps } from '../components/layouts/seo/seo'
 
-const ArrowRight = <i className="ph-arrow-right-bold size16"/>
-const Terminal = <i className="ph-terminal-fill size32"/>
-const GitMerge = <i className="ph-git-merge-fill size32"/>
+import Cloud from '../images/illustrations/hero.png'
+
+const ArrowRight = <i className="ph-arrow-right-bold size16" />
+const Terminal = <i className="ph-terminal-fill size32" />
+const GitMerge = <i className="ph-git-merge-fill size32" />
 
 export const seo: SeoProps = {
   description:
@@ -30,7 +31,8 @@ export const hero: HeroProps = {
   id: 'index.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>Open Source </span> Identity Infrastructure
+      <span className={'is-themed-primary'}>Open Source </span> Identity
+      Infrastructure
     </>
   ),
   description:
@@ -56,7 +58,8 @@ export const featureContentCloud: FeatureContentProps = {
   ),
   description: (
     <>
-     Benefit from hardened Ory Open Source services and skip the setup with Ory Cloud.
+      Benefit from hardened Ory Open Source services and skip the setup with Ory
+      Cloud.
     </>
   ),
   button: {
@@ -87,7 +90,8 @@ export const featureContentLogin: FeatureContentProps = {
   ),
   description: (
     <>
-      Ory provides open source authentication and access control APIs for everyone. 
+      Ory provides open source authentication and access control APIs for
+      everyone.
     </>
   ),
   button: {
@@ -107,7 +111,8 @@ export const featureContentLogin: FeatureContentProps = {
     title: <>Built for developers</>,
     description: (
       <>
-        Authenticate and manage users, set and check permissions, protect your APIs, applications, and data.
+        Authenticate and manage users, set and check permissions, protect your
+        APIs, applications, and data.
       </>
     ),
     features: [
@@ -115,14 +120,15 @@ export const featureContentLogin: FeatureContentProps = {
         title: <>Secure by design</>,
         description: (
           <>
-MFA, permissions and roles, custom branding and flows, OAuth 2.0,
+            MFA, permissions and roles, custom branding and flows, OAuth 2.0,
             OIDC, IAP, RBAC, integrations and{' '}
             <Button
               to={'https://www.ory.sh/docs/ecosystem/projects'}
               style={'link-inline'}
             >
               more
-            </Button>.
+            </Button>
+            .
           </>
         )
       },
@@ -130,7 +136,8 @@ MFA, permissions and roles, custom branding and flows, OAuth 2.0,
         title: <>Proven Quality</>,
         description: (
           <>
-            Ory is rooted in open source software and grows with every community member and pull-request.
+            Ory is rooted in open source software and grows with every community
+            member and pull-request.
           </>
         )
       }
@@ -151,7 +158,7 @@ export const featureContentUX: FeatureContentProps = {
   ),
   description: (
     <>
-      Ory is completely headless - bring your own UI in your favorite language. 
+      Ory is completely headless - bring your own UI in your favorite language.
     </>
   ),
   button: {
@@ -253,7 +260,8 @@ export const quickstart: QuickstartProps = {
   ),
   description: (
     <>
-      We want to help with any questions you have! Fill out the Form below and a Ory expert will reach out to discuss your needs.
+      We want to help with any questions you have! Fill out the Form below and a
+      Ory expert will reach out to discuss your needs.
     </>
   ),
   buttons: [
@@ -268,7 +276,8 @@ export const quickstart: QuickstartProps = {
       title: <>Detailed Docs</>,
       description: (
         <>
-          Get started right away and explore Ory! Review our documentation and breeze through technical concepts, level up with our tutorials or
+          Get started right away and explore Ory! Review our documentation and
+          breeze through technical concepts, level up with our tutorials or
           master our extensive API reference.
         </>
       ),
@@ -282,7 +291,8 @@ export const quickstart: QuickstartProps = {
       title: <>A helpful community</>,
       description: (
         <>
-          The Ory Open Source community is a great resource for help and advice. Chat with peers, discuss code and gain insights from the open source
+          The Ory Open Source community is a great resource for help and advice.
+          Chat with peers, discuss code and gain insights from the open source
           at the heart.
         </>
       ),

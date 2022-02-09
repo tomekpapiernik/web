@@ -21,7 +21,9 @@ export const sharedQuotes: QuoteProps = {
     {
       description: (
         <>
-          At Sainsbury’s Tech we use Ory tools to power our identity platform, My ID. My ID handles identity for major brands across the group including Nectar, Groceries On-line and SmartShop.
+          At Sainsbury’s Tech we use Ory tools to power our identity platform,
+          My ID. My ID handles identity for major brands across the group
+          including Nectar, Groceries On-line and SmartShop.
         </>
       ),
       person: `Paul Harman`,
@@ -30,7 +32,9 @@ export const sharedQuotes: QuoteProps = {
     {
       description: (
         <>
-           We enjoy using Ory because of the simplicity to integrate thanks to its modularity, its active and vocal developer base, and the extent and ease by which Ory tools can be configured.
+          We enjoy using Ory because of the simplicity to integrate thanks to
+          its modularity, its active and vocal developer base, and the extent
+          and ease by which Ory tools can be configured.
         </>
       ),
       person: `Matt Brown`,

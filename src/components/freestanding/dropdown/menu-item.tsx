@@ -13,7 +13,13 @@ interface PropType {
   onClick: string | (() => void)
 }
 
-const MenuItem = ({ className, title, dotted, onClick, children }: PropType) => (
+const MenuItem = ({
+  className,
+  title,
+  dotted,
+  onClick,
+  children
+}: PropType) => (
   <div>
     <li aria-haspopup="true" className={cn(menuItem, className && className)}>
       {typeof title === 'string' ? (
@@ -25,9 +31,11 @@ const MenuItem = ({ className, title, dotted, onClick, children }: PropType) => 
           {children}
         </>
       ) : (
-        <div onClick={typeof onClick === 'function' ? onClick : () => {}}>{title}</div>
+        <div onClick={typeof onClick === 'function' ? onClick : () => {}}>
+          {title}
+        </div>
       )}
-      {dotted ? (<span className={cn('dot')} />) : null}
+      {dotted ? <span className={cn('dot')} /> : null}
     </li>
   </div>
 )

@@ -8,8 +8,6 @@ export const sharedStats: StatsProps = {
   slant: true,
   title: <>Billions of Identities</>,
   description: (
-    <>
-      Companies from all over the world rely on Ory for their identity needs.
-    </>
+    <>Companies from all over the world rely on Ory for their identity needs.</>
   )
 }

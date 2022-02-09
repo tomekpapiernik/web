@@ -1,19 +1,12 @@
-import React from 'react'
 import { Location } from '@reach/router'
+import React from 'react'
 
-import './previewGlobalDeps'
 import Layout from '../components/layouts/layout/layout'
 
+import './previewGlobalDeps'
+
 const PreviewLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <Location>
-      {() => (
-        <Layout>
-          {children}
-        </Layout>
-      )}
-    </Location>
-  )
+  return <Location>{() => <Layout>{children}</Layout>}</Location>
 }
 
 export default PreviewLayout

@@ -28,7 +28,7 @@ export interface PropTypes {
 }
 
 interface Project {
-  theme: 'hydra' | 'kratos' | 'keto' | 'oathkeeper',
+  theme: 'hydra' | 'kratos' | 'keto' | 'oathkeeper'
   title: string
   overline: string | React.ReactElement
   descriptiveTitle: string

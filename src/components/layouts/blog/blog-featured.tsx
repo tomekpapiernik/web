@@ -6,10 +6,10 @@ import Button from '../../freestanding/button/button'
 import Container from '../../freestanding/containers/container'
 
 import { AuthorName } from './blog-author'
+import BlogHeading from './blog-heading'
 import type { BlogPostNode } from './blog-list'
 
 import * as styles from './blog-featured.module.css'
-import BlogHeading from './blog-heading'
 
 export interface BlogFeaturedProps {
   title: string
@@ -25,21 +25,26 @@ export interface FeaturedJson {
   bottom: string
 }
 
-const makeGetFeaturedBlogPost = (blogPosts: { node: BlogPostNode }[], rawJson: { featured: FeaturedJson }) => (wanted: keyof typeof rawJson.featured) =>
-  blogPosts.find(
-    ({ node: { frontmatter: { path = null } = {} } = {} }: any) =>
-      path === rawJson.featured[wanted]
-  )?.node
+const makeGetFeaturedBlogPost =
+  (blogPosts: { node: BlogPostNode }[], rawJson: { featured: FeaturedJson }) =>
+  (wanted: keyof typeof rawJson.featured) =>
+    blogPosts.find(
+      ({ node: { frontmatter: { path = null } = {} } = {} }: any) =>
+        path === rawJson.featured[wanted]
+    )?.node
 
-export const getFeaturedProps = (edges: { node: BlogPostNode }[], rawJson: { featured: FeaturedJson }): BlogFeaturedProps => {
+export const getFeaturedProps = (
+  edges: { node: BlogPostNode }[],
+  rawJson: { featured: FeaturedJson }
+): BlogFeaturedProps => {
   const getFeatured = makeGetFeaturedBlogPost(edges, rawJson)
 
   return {
     title: rawJson.featured.title,
     big: getFeatured('big') as BlogPostNode,
     top: getFeatured('top') as BlogPostNode,
-    bottom: getFeatured('bottom') as BlogPostNode,
-  };
+    bottom: getFeatured('bottom') as BlogPostNode
+  }
 }
 
 const Base = ({

@@ -62,22 +62,19 @@ const FooterMain = ({ className, logo, category }: FooterMain) => (
                 >
                   {menuCategory}
                 </p>
-                {menuItems.map(({
-                  to,
-                  openInNewWindow,
-                  title,
-                  dotted,
-                }, index) => (
-                  <Button
-                    key={index}
-                    style={'footer'}
-                    to={to}
-                    openInNewWindow={openInNewWindow}
-                  >
-                    {title}
-                    {dotted ? (<span className={cn('dot')} />) : null}
-                  </Button>
-                ))}
+                {menuItems.map(
+                  ({ to, openInNewWindow, title, dotted }, index) => (
+                    <Button
+                      key={index}
+                      style={'footer'}
+                      to={to}
+                      openInNewWindow={openInNewWindow}
+                    >
+                      {title}
+                      {dotted ? <span className={cn('dot')} /> : null}
+                    </Button>
+                  )
+                )}
               </div>
             ))}
           </Container>
@@ -150,12 +147,7 @@ const FooterSub = ({ className, social, legal }: FooterSub) => (
   </Container>
 )
 
-const Footer = ({
-  logo,
-  category,
-  social,
-  legal
-}: FooterPropTypes) => (
+const Footer = ({ logo, category, social, legal }: FooterPropTypes) => (
   <>
     <div className={cn(styles.footer, 'background-is-dark')}>
       <FooterMain className={cn(pb32)} category={category} logo={logo} />

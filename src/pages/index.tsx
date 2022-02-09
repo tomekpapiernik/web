@@ -11,9 +11,9 @@ import Quotes from '../components/layouts/quotes/quotes'
 import SEO from '../components/layouts/seo/seo'
 import Stats from '../components/layouts/stats/stats'
 import * as content from '../page-content/content-index'
-import {sharedAdopters} from '../page-content/shared/content-adopters'
-import {sharedQuotes} from '../page-content/shared/content-quotes'
-import {sharedStats} from '../page-content/shared/content-stats'
+import { sharedAdopters } from '../page-content/shared/content-adopters'
+import { sharedQuotes } from '../page-content/shared/content-quotes'
+import { sharedStats } from '../page-content/shared/content-stats'
 
 const IndexPage = () => (
   <Layout>

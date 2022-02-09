@@ -2,9 +2,10 @@ import cn from 'classnames'
 import { Link } from 'gatsby'
 import React from 'react'
 
-import Container from '../../freestanding/containers/container'
-import type { BlogPostNode } from './blog-list'
 import type { BlogContext } from '../../../pages/blog'
+import Container from '../../freestanding/containers/container'
+
+import type { BlogPostNode } from './blog-list'
 
 import * as styles from './blog-tags.module.css'
 
@@ -48,19 +49,20 @@ export const slugify = (text: string) => {
     .replace(/[^a-z0-9]+/g, '-')
 }
 
-export const addTagSlugs = (rawJson: { tags: Tag[], [k: string]: any }) => ({
-  ...rawJson,
-  tags: rawJson.tags.map((original) => ({
-    seo: {},
-    posts: [],
-    ids: [],
-    ...original,
-    slug: slugify(original.name),
-  })),
-} as unknown as BlogContext)
+export const addTagSlugs = (rawJson: { tags: Tag[]; [k: string]: any }) =>
+  ({
+    ...rawJson,
+    tags: rawJson.tags.map((original) => ({
+      seo: {},
+      posts: [],
+      ids: [],
+      ...original,
+      slug: slugify(original.name)
+    }))
+  } as unknown as BlogContext)
 
 export const findTagBySlug = (tags: Tag[], slug: string) => {
-  return tags.find(tag => tag.slug === slug)
+  return tags.find((tag) => tag.slug === slug)
 }
 
 export const findIndexBySlug = (slug: string, tags: Tag[]) => {
@@ -121,7 +123,7 @@ const BlogTags = ({
   tags,
   showCount,
   currentSlug,
-  allLabel = 'All',
+  allLabel = 'All'
 }: PropTypes) => {
   return (
     <Container
@@ -142,28 +144,30 @@ const BlogTags = ({
           </Link>
         </li>
 
-        {tags.map(
-          ({ slug, name, ids: { length: count } = [] }) => (count ? (
-            <li
-              key={slug}
-              className={cn(styles.item, {
-                [styles.active]: slug === currentSlug
-              })}
-            >
-              <Link to={`/blog/tag/${slug}#_`} className={styles.link}>
-                <span className={styles.name}>{name}</span>
-                <>
-                  {showCount && (
-                    <>
-                      {' '}
-                      <span className={styles.count}>{count}</span>
-                    </>
-                  )}
-                </>
-              </Link>
-            </li>
-          ) : null)
-        ).filter(Boolean)}
+        {tags
+          .map(({ slug, name, ids: { length: count } = [] }) =>
+            count ? (
+              <li
+                key={slug}
+                className={cn(styles.item, {
+                  [styles.active]: slug === currentSlug
+                })}
+              >
+                <Link to={`/blog/tag/${slug}#_`} className={styles.link}>
+                  <span className={styles.name}>{name}</span>
+                  <>
+                    {showCount && (
+                      <>
+                        {' '}
+                        <span className={styles.count}>{count}</span>
+                      </>
+                    )}
+                  </>
+                </Link>
+              </li>
+            ) : null
+          )
+          .filter(Boolean)}
       </ul>
     </Container>
   )

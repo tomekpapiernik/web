@@ -42,7 +42,7 @@ const DropdownItem = ({
             )}
           >
             {description}
-            {dotted ? (<span className={cn('dot')} />) : null}
+            {dotted ? <span className={cn('dot')} /> : null}
           </p>
         )}
       </div>

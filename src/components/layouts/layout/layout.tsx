@@ -11,9 +11,7 @@ import 'prismjs/components/prism-yaml'
 import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
 
-import footer from '../../../page-content/navigation/footer.json'
 import { sideNav } from '../../../page-content/navigation/navigation-header'
-import nav from '../../../page-content/navigation/header.json'
 import Footer from '../footer/footer'
 import Navigation from '../navigation/navigation'
 import EventLayout from '../summit/event-layout'
@@ -22,6 +20,8 @@ import * as styles from './layout.module.css'
 
 import oryLogoPrimary from '../../../images/logo/logo-ory-primary.svg'
 import oryLogoWhite from '../../../images/logo/logo-ory-white.svg'
+import footer from '../../../page-content/navigation/footer.json'
+import nav from '../../../page-content/navigation/header.json'
 
 interface PropTypes {
   isEvent?: boolean
@@ -32,11 +32,7 @@ interface PropTypes {
 const Layout = ({ children, theme, isEvent }: PropTypes) => {
   return (
     <div className={cn(styles.layout)}>
-      <Navigation
-        logo={oryLogoPrimary}
-        {...sideNav}
-        {...nav}
-      />
+      <Navigation logo={oryLogoPrimary} {...sideNav} {...nav} />
       <main
         className={cn(
           theme ? `theme-${theme}` : '',
@@ -45,10 +41,7 @@ const Layout = ({ children, theme, isEvent }: PropTypes) => {
       >
         {isEvent ? <EventLayout>{children}</EventLayout> : children}
       </main>
-      <Footer
-        logo={oryLogoWhite}
-        {...footer}
-      />
+      <Footer logo={oryLogoWhite} {...footer} />
     </div>
   )
 }

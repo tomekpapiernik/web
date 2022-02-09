@@ -27,7 +27,7 @@ interface PropTypes {
   slant?: boolean
   smallpadding?: boolean
   special?: ReactNode
-  preselect?: keyof typeof projects,
+  preselect?: keyof typeof projects
   title?: string
   teaser?: string
   placeholder?: string
@@ -88,9 +88,7 @@ const Newsletter = ({
               ) : (
                 <>
                   <h3 className={cn('font-h2', pb32)}>{title}</h3>
-                  <p className={cn('font-p', pb32)}>
-                    {teaser}
-                  </p>
+                  <p className={cn('font-p', pb32)}>{teaser}</p>
                 </>
               )}
             </Container>

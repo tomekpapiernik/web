@@ -3,8 +3,8 @@ import uploadcare from 'netlify-cms-media-library-uploadcare'
 
 import BlogPostPreview from './preview-templates/BlogPostPreview'
 import BlogPreview from './preview-templates/BlogPreview'
-import HeaderPreview from './preview-templates/HeaderPreview'
 import FooterPreview from './preview-templates/FooterPreview'
+import HeaderPreview from './preview-templates/HeaderPreview'
 
 CMS.registerMediaLibrary(uploadcare)
 

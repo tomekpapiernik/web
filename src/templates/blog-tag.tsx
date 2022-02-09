@@ -1,7 +1,9 @@
 import { PageProps, useStaticQuery, graphql } from 'gatsby'
 import React from 'react'
 
-import FeaturedBlogPosts, { getFeaturedProps } from '../components/layouts/blog/blog-featured'
+import FeaturedBlogPosts, {
+  getFeaturedProps
+} from '../components/layouts/blog/blog-featured'
 import BlogHeading from '../components/layouts/blog/blog-heading'
 import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
 import BlogTags, { addTagSlugs } from '../components/layouts/blog/blog-tags'
@@ -11,15 +13,10 @@ import SEO from '../components/layouts/seo/seo'
 
 import rawJson from '../page-content/content-blog.json'
 
-const jsonWithTagSlugs = addTagSlugs(rawJson as any);
+const jsonWithTagSlugs = addTagSlugs(rawJson as any)
 
 const BlogTagPage = ({
-  pageContext: {
-    tagSlug,
-    tagName,
-    posts,
-    seo: tagSeo = {}
-  }
+  pageContext: { tagSlug, tagName, posts, seo: tagSeo = {} }
 }: PageProps<
   any,
   {
@@ -31,10 +28,10 @@ const BlogTagPage = ({
 >) => {
   const seo = {
     ...jsonWithTagSlugs.seo,
-    ...tagSeo,
+    ...tagSeo
   }
 
-  const content = { ...jsonWithTagSlugs, tags: [...jsonWithTagSlugs.tags] };
+  const content = { ...jsonWithTagSlugs, tags: [...jsonWithTagSlugs.tags] }
   const blogTagPosts = useStaticQuery(graphql`
     query blogTagListing {
       allMdx(
@@ -75,9 +72,8 @@ const BlogTagPage = ({
     }
   `)
 
-
   blogTagPosts.allMdx.edges.forEach(({ node }: { node: BlogPostNode }) => {
-    const postTags = node.frontmatter.tags || [];
+    const postTags = node.frontmatter.tags || []
     content.tags.forEach((tag) => {
       if (postTags.includes(tag.name) && !tag.ids.includes(node.id)) {
         tag.posts.push(node)
@@ -90,18 +86,17 @@ const BlogTagPage = ({
     <Layout>
       <SEO {...seo} />
 
-      <FeaturedBlogPosts {...getFeaturedProps(blogTagPosts.allMdx.edges, rawJson)} />
+      <FeaturedBlogPosts
+        {...getFeaturedProps(blogTagPosts.allMdx.edges, rawJson)}
+      />
 
       <Newsletter
-        {...rawJson.newsletter as React.ComponentProps<typeof Newsletter>}
+        {...(rawJson.newsletter as React.ComponentProps<typeof Newsletter>)}
       />
 
       <BlogHeading title={tagName} />
 
-      <BlogTags
-        currentSlug={tagSlug}
-        tags={content.tags}
-      />
+      <BlogTags currentSlug={tagSlug} tags={content.tags} />
 
       <BlogList id={`blog.${tagSlug}.list`} posts={posts} />
     </Layout>

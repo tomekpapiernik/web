@@ -167,78 +167,82 @@ const Navigation = ({ logo, dropdownMenu, mobileMenu, sideNav }: PropTypes) => {
 
         <nav role={'navigation'} ref={currentNode} className={styles.flex}>
           <Container justify={'start'} smHidden={true} xsHidden={true}>
-            {dropdownMenu.map(({ title, mainMenu, sideMenu, dotted, to }, index) => {
-              if (to) {
+            {dropdownMenu.map(
+              ({ title, mainMenu, sideMenu, dotted, to }, index) => {
+                if (to) {
+                  return (
+                    <MenuItem
+                      title={title}
+                      dotted={dotted}
+                      key={index}
+                      className={cn(pr32)}
+                      onClick={to}
+                    />
+                  )
+                }
+
                 return (
                   <MenuItem
                     title={title}
                     dotted={dotted}
                     key={index}
                     className={cn(pr32)}
-                    onClick={to}
-                  />
+                    onClick={() =>
+                      setOpenMenu((current) => {
+                        if (current === String(index)) {
+                          return ''
+                        }
+                        return String(index)
+                      })
+                    }
+                  >
+                    <DropdownMenu show={openMenu === String(index)}>
+                      {mainMenu &&
+                        mainMenu.map(
+                          (
+                            {
+                              title,
+                              description,
+                              to,
+                              openInNewWindow,
+                              dotted,
+                              className
+                            },
+                            index
+                          ) => (
+                            <DropdownItem
+                              className={className}
+                              onClick={() => setOpenMenu('')}
+                              key={index}
+                              openInNewWindow={openInNewWindow}
+                              to={to}
+                              title={title}
+                              dotted={dotted}
+                              description={description}
+                            />
+                          )
+                        )}
+                      {sideMenu && (
+                        <Container
+                          flexContainer={'column'}
+                          justify={'start'}
+                          alignItems={'start'}
+                        >
+                          {sideMenu.map(({ description, button }, index) => (
+                            <ContentText key={index} className={cn(pb24)}>
+                              {button}
+                              <p className={cn('font-p-small')}>
+                                {description}
+                              </p>
+                            </ContentText>
+                          ))}
+                        </Container>
+                      )}
+                    </DropdownMenu>
+                  </MenuItem>
                 )
               }
-
-              return (
-                <MenuItem
-                  title={title}
-                  dotted={dotted}
-                  key={index}
-                  className={cn(pr32)}
-                  onClick={() =>
-                    setOpenMenu((current) => {
-                      if (current === String(index)) {
-                        return ''
-                      }
-                      return String(index)
-                    })
-                  }
-                >
-                  <DropdownMenu show={openMenu === String(index)}>
-                    {mainMenu &&
-                      mainMenu.map(
-                        (
-                          {
-                            title,
-                            description,
-                            to,
-                            openInNewWindow,
-                            dotted,
-                            className
-                          },
-                          index
-                        ) => (
-                          <DropdownItem
-                            className={className}
-                            onClick={() => setOpenMenu('')}
-                            key={index}
-                            openInNewWindow={openInNewWindow}
-                            to={to}
-                            title={title}
-                            dotted={dotted}
-                            description={description}
-                          />
-                        )
-                      )}
-                    {sideMenu && (
-                      <Container
-                        flexContainer={'column'}
-                        justify={'start'}
-                        alignItems={'start'}
-                      >
-                        {sideMenu.map(({ description, button }, index) => (
-                          <ContentText key={index} className={cn(pb24)}>
-                            {button}
-                            <p className={cn('font-p-small')}>{description}</p>
-                          </ContentText>
-                        ))}
-                      </Container>
-                    )}
-                  </DropdownMenu>
-                </MenuItem>
-              )
-            })}
+            )}
           </Container>
         </nav>
 

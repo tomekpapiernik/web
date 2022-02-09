@@ -7,10 +7,7 @@ import Grid from '../../freestanding/containers/grid'
 
 import { AuthorName } from './blog-author'
 
-import {
-  pb16,
-  pb8
-} from '../../freestanding/utils/padding.module.css'
+import { pb16, pb8 } from '../../freestanding/utils/padding.module.css'
 import * as styles from './blog-list.module.css'
 
 export interface PropTypes {
@@ -85,7 +82,13 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
 
 const BlogList = ({ id, posts }: PropTypes) => {
   return (
-    <Container id={id} className={cn(styles.blogList)} fluid={true} justify={'center'} alignItems={'start'}>
+    <Container
+      id={id}
+      className={cn(styles.blogList)}
+      fluid={true}
+      justify={'center'}
+      alignItems={'start'}
+    >
       <Grid lg={12} md={12} sm={12} xs={12}>
         <Container alignItems={'stretch'} justify={'start'}>
           {(posts || []).map((node) => (

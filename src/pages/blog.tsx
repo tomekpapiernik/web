@@ -1,7 +1,9 @@
 import { useStaticQuery, graphql, PageProps } from 'gatsby'
 import React from 'react'
 
-import FeaturedBlogPosts, { getFeaturedProps } from '../components/layouts/blog/blog-featured'
+import FeaturedBlogPosts, {
+  getFeaturedProps
+} from '../components/layouts/blog/blog-featured'
 import BlogHeading from '../components/layouts/blog/blog-heading'
 import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
 import BlogTags, { addTagSlugs } from '../components/layouts/blog/blog-tags'
@@ -80,9 +82,9 @@ const BlogPage = () => {
     }
   `)
 
-  const content = { ...jsonWithTagSlugs, tags: [...jsonWithTagSlugs.tags] };
+  const content = { ...jsonWithTagSlugs, tags: [...jsonWithTagSlugs.tags] }
   blogPosts.allMdx.edges.forEach(({ node }: { node: BlogPostNode }) => {
-    const postTags = node.frontmatter.tags || [];
+    const postTags = node.frontmatter.tags || []
     content.tags.forEach((tag) => {
       if (postTags.includes(tag.name) && !tag.ids.includes(node.id)) {
         tag.posts.push(node)
@@ -95,10 +97,12 @@ const BlogPage = () => {
     <Layout>
       <SEO {...content.seo} />
 
-      <FeaturedBlogPosts {...getFeaturedProps(blogPosts.allMdx.edges, rawJson)} />
+      <FeaturedBlogPosts
+        {...getFeaturedProps(blogPosts.allMdx.edges, rawJson)}
+      />
 
       <Newsletter
-        {...rawJson.newsletter as React.ComponentProps<typeof Newsletter>}
+        {...(rawJson.newsletter as React.ComponentProps<typeof Newsletter>)}
       />
 
       <BlogHeading title={content.title} />

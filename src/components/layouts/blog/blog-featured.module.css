@@ -144,7 +144,7 @@
   .side .article:first-child {
     margin-right: var(--space-small);
   }
-  
+
   .big {
     max-width: 100%;
     margin-bottom: var(--space-small);
