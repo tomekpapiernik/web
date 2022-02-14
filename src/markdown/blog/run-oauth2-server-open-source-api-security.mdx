@@ -301,7 +301,7 @@ the `hydra migrate sql` command.
 ```shell-session
 docker run -it --rm \
   --network hydraguide \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   migrate sql --yes $DSN
 ```
 
@@ -341,7 +341,7 @@ docker run -d \
   -e URLS_SELF_ISSUER=http://127.0.0.1:9000/ \
   -e URLS_CONSENT=http://127.0.0.1:9020/consent \
   -e URLS_LOGIN=http://127.0.0.1:9020/login \
-  oryd/hydra:v1.10.2 serve all --dangerous-force-http
+  oryd/hydra:v1.11.2 serve all --dangerous-force-http
 ```
 
 ### Is it alive?
@@ -369,7 +369,7 @@ the available commands, run the `help` command.
 
 ```shell-session
 docker run --rm -it \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   help
 ```
 
@@ -411,7 +411,7 @@ the flow we
 ```shell-session
 docker run --rm -it \
   --network hydraguide \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   clients create \
     --endpoint http://ory-hydra-example--hydra:4445 \
     --id some-consumer \
@@ -432,7 +432,7 @@ client to perform the OAuth 2.0 Client Credentials grant.
 ```shell-session
 docker run --rm -it \
   --network hydraguide \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   token client \
     --client-id some-consumer \
     --client-secret some-secret \
@@ -453,10 +453,8 @@ next step.
 ```shell-session
 docker run --rm -it \
   --network hydraguide \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   token introspect \
-    --client-id some-consumer \
-    --client-secret some-secret \
     --endpoint http://ory-hydra-example--hydra:4445 \
     >INSERT-TOKEN-HERE<
 
@@ -532,7 +530,7 @@ and `offline`, and response types `token`, `code`, and `id_token`.
 ```shell-session
 docker run --rm -it \
   --network hydraguide \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   clients create \
     --endpoint http://ory-hydra-example--hydra:4445 \
     --id another-consumer \
@@ -563,7 +561,7 @@ libraries for different languages: [Golang](https://github.com/golang/oauth2),
 docker run --rm -it \
   --network hydraguide \
   -p 9010:9010 \
-  oryd/hydra:v1.10.2 \
+  oryd/hydra:v1.11.2 \
   token user \
     --port 9010 \
     --auth-url http://127.0.0.1:9000/oauth2/auth \
