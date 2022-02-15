@@ -284,9 +284,9 @@ https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/qual
 
 # Proxy to new docs
 
-https://www.ory.sh/docs https://docs-omega-six.vercel.app/docs 200
-https://www.ory.sh/docs/* https://docs-omega-six.vercel.app/docs/:splat 200
-https://www.ory.sh/oathkeeper/docs/* https://docs-omega-six.vercel.app/docs/oathkeeper/:splat 200
-https://www.ory.sh/kratos/docs/* https://docs-omega-six.vercel.app/docs/kratos/:splat 200
-https://www.ory.sh/keto/docs/* https://docs-omega-six.vercel.app/docs/keto/:splat 200
-https://www.ory.sh/hydra/docs/* https://docs-omega-six.vercel.app/docs/hydra/:splat 200
+https://www.ory.sh/docs https://docs-omega-six.vercel.app/docs 200!
+https://www.ory.sh/docs/* https://docs-omega-six.vercel.app/docs/:splat 200!
+https://www.ory.sh/oathkeeper/docs/* https://docs-omega-six.vercel.app/docs/oathkeeper/:splat 200!
+https://www.ory.sh/kratos/docs/* https://docs-omega-six.vercel.app/docs/kratos/:splat 200!
+https://www.ory.sh/keto/docs/* https://docs-omega-six.vercel.app/docs/keto/:splat 200!
+https://www.ory.sh/hydra/docs/* https://docs-omega-six.vercel.app/docs/hydra/:splat 200!
