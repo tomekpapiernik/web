@@ -281,3 +281,7 @@ https://www.ory.sh/blog/tag/self-service https://www.ory.sh/blog/tag/authenticat
 https://www.ory.sh/blog/tag/product https://www.ory.sh/blog/tag/ory-cloud 302!
 
 https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/quality-assurance 302!
+
+# Proxy to new docs
+
+/docs/*  https://docs-omega-six.vercel.app/docs/:splat  200
