@@ -275,6 +275,7 @@ https://www.ory.sh/blog/tag/product https://www.ory.sh/blog/tag/ory-cloud 302!
 https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/quality-assurance 302!
 
 # Proxy to new docs
+/docs/ /docs/welcome 302!
 /docs/* https://docs-omega-six.vercel.app/docs/:splat 200!
 
 /keto/docs/* https://docs-omega-six.vercel.app/docs/keto/:splat 302!
