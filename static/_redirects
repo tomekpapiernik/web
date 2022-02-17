@@ -278,7 +278,7 @@ https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/qual
 /docs/ /docs/welcome 302!
 /docs/* https://docs-omega-six.vercel.app/docs/:splat 200!
 
-/keto/docs/* https://docs-omega-six.vercel.app/docs/keto/:splat 302!
-/kratos/docs/* https://docs-omega-six.vercel.app/docs/kratos/:splat 302!
-/oathkeeper/docs/* https://docs-omega-six.vercel.app/docs/oathkeeper/:splat 302!
-/hydra/docs/* https://docs-omega-six.vercel.app/docs/hydra/:splat 302!
+/keto/docs/* https://www.ory.sh/docs/keto/:splat 302!
+/kratos/docs/* https://www.ory.sh/docs/kratos/:splat 302!
+/oathkeeper/docs/* https://www.ory.sh/docs/oathkeeper/:splat 302!
+/hydra/docs/* https://www.ory.sh/docs/hydra/:splat 302!
