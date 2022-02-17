@@ -75,7 +75,7 @@
   ],
   "featured": {
     "title": "Featured blog posts",
-    "big": "/choose-recommended-argon2-parameters-password-hashing/",
+    "big": "/login-flutter-authentication-example-api-open-source/",
     "top": "/cloud-ecommerce-frontend/",
     "bottom": "/looking-at-keto/"
   },
@@ -128,6 +128,11 @@
       "name": "gen1us2k",
       "fullname": "Andrew Minkin",
       "url": "https://github.com/gen1us2k"
+    },
+    {
+      "name": "iglu",
+      "fullname": "IGLU",
+      "url": "https://github.com/IGLU-Agency"
     }
   ]
 }
