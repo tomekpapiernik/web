@@ -49,6 +49,16 @@
                 'event': pupose,
                 pupose: 'true'
               })
+              if (category == 4) {
+                dataLayer.push('consent', 'update', {
+                  'analytics_storage': 'granted'
+                });
+              }
+              if (category == 5) {
+                dataLayer.push('consent', 'update', {
+                  'ad_storage': 'granted'
+                });
+              }
             }
           }
         }
@@ -58,12 +68,31 @@
           'event': 'iubenda_preference_not_needed',
           'iubenda_preference_not_needed': 'true'
         })
+        // Update consent settings
+        dataLayer.push('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted'
+        });
         return
       }
     }
     
     const initAnalytics = () => {
       window.dataLayer = window.dataLayer || []
+
+      // Set default values for tag manager consent mode
+      dataLayer.push('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 2000
+      });
+
+      // Improve campaign click measurement quality
+      dataLayer.push('set', 'url_passthrough', true);
+
+      // Further redact your ads data
+      dataLayer.push('set', 'ads_data_redaction', true);
+
       const _iub = window._iub || {}
       _iub.csConfiguration = {
         enableCcpa: true,
