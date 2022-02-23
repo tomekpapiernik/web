@@ -265,10 +265,8 @@ export const faq: FaqProps = {
       question: `What does unlimited identities mean? Are there really no limits?`,
       answer: (
         <>
-          Ory does not charge you for individual identities. We do have limits
-          on database storage space. You can create as many identities as you
-          require, but to prevent abuse of the system we limit the database
-          storage.
+          Ory does not charge you for individual identities. You can create as many identities as you
+          require for your users.
         </>
       )
     }
