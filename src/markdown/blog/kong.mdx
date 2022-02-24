@@ -1,0 +1,64 @@
+---
+templateKey: blogpost
+path: '/securing-your-microservice-infrastructure-using-kong-kratos-and-oathkeeper/'
+author: gen1us2k
+title: Building a Slack bot using the Events API
+teaser:
+  In this article we'll show you a cost effective way to build bots for Slack
+overline: Community Onboarding
+publishedAt: 2022-02-23
+published: true
+tags:
+  - Open Source
+  - Guide
+---
+
+import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
+
+Modern backend systems work on multi-cloud and use multiple solutions to proxy/balance and secure network traffic. We have CloudFlare/AWS services that help us build robust and highly available solutions accessible around the world. Cloud providers usually allow us to host our code efficiently from a cost and maintenance perspective. It is good because you can rely on proven technologies and not reinvent the wheel by managing something yourself.
+
+In this tutorial, I'll show you an example of how you can save time by building a secure infrastructure for your microservice architecture.
+
+
+## Kong Gateway
+
+Kong gateway can be an excellent solution for an ingress load balancer if you do not want to have vendor lock-in of any cloud API Gateways in your application. Kong uses OpenResty and Lua, which sounds like a robust and high-performance configuration. OpenResty extends nginx with Lua scripting leveraging Nginx's event model to do non-blocking I/O with the HTTP clients and remote backends like PostgreSQL, Memcached, and Redis. OpenResty is not an Nginx fork, and Kong is not an Openresty fork.
+
+You can install Kong in two different ways
+
+- With a database: Kong uses PostgreSQL or Cassandra to store configuration
+- Without database: Kong stores configuration in-memory, and admin APIs are read-only
+
+## Oathkeeper
+
+ORY Oathkeeper is an Identity & Access Proxy (IAP) and Access Control Decision API that authorizes HTTP requests based on sets of Access Rules. The BeyondCorp Model is designed by Google and secures applications in Zero-Trust networks. Oathkeeper is not a replacement of an ingress load balancer such as nginx/envoy/traefik. It helps a load balancer decide to proxying incoming HTTP requests.
+
+It has two modes of work
+
+- a proxy: if a request is allowed, it is forwarded to the upstream
+- an arbiter validating a request and returning HTTP success status or an error
+
+## Kratos
+
+Ory Kratos is an API-first Identity and User Management system that is built according to cloud architecture best practices. It implements core use cases that almost every software application needs to deal with:
+
+- Self-service Login and Registration: Allow end-users to create and sign into accounts (we call them identities) using Username / Email and password combinations, Social Sign In ("Sign in with Google, GitHub"), Passwordless flows, and others.
+- Multi-Factor Authentication (MFA/2FA): Support protocols such as TOTP (RFC 6238 and IETF RFC 4226 - better known as Google Authenticator)
+- Account Verification: Verify that an E-Mail address, phone number, or physical address actually belong to that identity.
+- Account Recovery: Recover access using "Forgot Password" flows, Security Codes (in case of MFA device loss), etc.
+- Profile and Account Management: Update passwords, personal details, email addresses, linked social profiles using secure flows.
+- Admin APIs: Import, update, delete identities.
+
+## The Architecture
+
+## A hello world example
+
+## Configuring Kratos
+
+## Configuring Oathkeeper
+
+## Configuring Kong
+
+## Testing
+
+## Summary
