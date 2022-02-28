@@ -36,8 +36,8 @@ export const hero_alt: HeroImageProps = {
   ),
   description: (
     <>
-      Ory Cloud is API-first, customizable, privacy conform and secure
-      <span className={'is-themed-primary'}> and deploys all Ory services in concert - at any scale, across the globe. </span>
+      Ory Cloud is API-first, customizable, privacy conform and secure and deploys all Ory services in concert - at any scale, across the globe.
+      <span className={'is-themed-primary'}>  </span>
     </>
   ),
   buttons: [
