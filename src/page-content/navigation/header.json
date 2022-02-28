@@ -39,7 +39,7 @@
           "to": "/hydra"
         },
         {
-          "title": "Global Authorization",
+          "title": "Global Authorization Service",
           "description": "Ory Keto",
           "to": "/keto"
         },
