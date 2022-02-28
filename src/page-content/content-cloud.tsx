@@ -31,13 +31,13 @@ export const hero_alt: HeroImageProps = {
   id: 'cloud.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}> Cloud native </span> identity
+      <span className={'is-themed-primary'}> Ory Cloud </span> uses idustry standards
     </>
   ),
   description: (
     <>
-      Integrate modern identity services with Ory Cloud. Batteries included.
-      <span className={'is-themed-primary'}> Based on Ory Open Source. </span>
+      Ory Cloud is API-first, customizable, privacy conform and secure
+      <span className={'is-themed-primary'}> and deploys all Ory services in concert - at any scale, across the globe. </span>
     </>
   ),
   buttons: [
@@ -67,7 +67,7 @@ export const projectListCloud: ProjectListProps = {
   description: (
     <>
       Ory Cloud works on any scale and stack and provides SDKs for any
-      programming language.
+      programming language. 
     </>
   ),
   projects: [
