@@ -4,7 +4,7 @@ import { PropTypes as AnnouncementProps } from '../../components/layouts/navigat
 
 const jobs: AnnouncementProps = {
   longText: 'Get Ory Cloud Start Up subscription free for a year using code FIRST900',
-  shortText: 'Ory Cloud Start Up Plan!',
+  shortText: 'Ory Cloud free for a year!',
   link: 'https://console.ory.sh/registration?preferred_plan=start-up'
 }
 
