@@ -42,7 +42,7 @@ export const hero_alt: HeroImageProps = {
   ),
   buttons: [
     {
-      ctaTitle: 'Test Now',
+      ctaTitle: 'Get Started',
       style: 'filled',
       to: 'https://console.ory.sh/registration'
     }
@@ -212,7 +212,7 @@ export const featureContentUX: FeatureContentProps = {
     </>
   ),
   button: {
-    ctaTitle: 'Sign up',
+    ctaTitle: 'Get Started',
     to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
@@ -353,7 +353,7 @@ export const quickstart: QuickstartProps = {
   ),
   buttons: [
     {
-      ctaTitle: 'Sign up',
+      ctaTitle: 'Get Started',
       style: 'filled',
       to: 'https://console.ory.sh/registration'
     },
