@@ -61,7 +61,7 @@
       "mainMenu": [
         {
           "title": "Documentation",
-          "description": "Open Source Documentation",
+          "description": "Documentation for all Ory products",
           "to": "/docs"
         },
         {
