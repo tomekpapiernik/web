@@ -31,7 +31,7 @@ export const hero_alt: HeroImageProps = {
   id: 'cloud.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}> Ory Cloud </span> uses idustry standards
+      <span className={'is-themed-primary'}> Ory Cloud </span> uses industry standards
     </>
   ),
   description: (
