@@ -67,7 +67,7 @@ export const projectListCloud: ProjectListProps = {
   description: (
     <>
       Ory Cloud works on any scale and stack and provides SDKs for any
-      programming language. 
+      programming language.
     </>
   ),
   projects: [
