@@ -32,12 +32,12 @@ export const sharedBannerOpensource: BannerProps = {
 }
 
 export const sharedBannerSlack: BannerProps = {
-  id:'shared.banner.slack',
+  id: 'shared.banner.slack',
   text: (
     <>
       Do you like using Ory?{' '}
       <Button to={'https://slack.ory.sh/'} style={'link-inline'}>
-       Please share your feedback
+        Please share your feedback
       </Button>{' '}
       and let us know how we can improve Ory Cloud!
     </>
