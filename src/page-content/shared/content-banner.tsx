@@ -31,6 +31,19 @@ export const sharedBannerOpensource: BannerProps = {
   )
 }
 
+export const sharedBannerSlack: BannerProps = {
+  id:'shared.banner.slack',
+  text: (
+    <>
+      Do you like using Ory?{' '}
+      <Button to={'www.google.com'} style={'link-inline'}>
+        Give us your feedback
+      </Button>{' '}
+      on using on our website and the Ory Cloud console!
+    </>
+  )
+}
+
 export const sharedBannerKratos: BannerProps = {
   id: 'shared.banner.kratos',
   text: (
