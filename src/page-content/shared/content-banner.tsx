@@ -36,7 +36,7 @@ export const sharedBannerSlack: BannerProps = {
   text: (
     <>
       Do you like using Ory?{' '}
-      <Button to={'www.google.com'} style={'link-inline'}>
+      <Button to={'https://slack.ory.sh/'} style={'link-inline'}>
         Give us your feedback
       </Button>{' '}
       on using on our website and the Ory Cloud console!
