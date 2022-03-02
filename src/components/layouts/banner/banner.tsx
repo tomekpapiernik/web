@@ -6,30 +6,33 @@ import Container from '../../freestanding/containers/container'
 import * as styles from './banner.module.css'
 
 export interface PropTypes {
-  id: string
-  background?: 'dark' | 'grey' | 'light-grey' | 'themed'
-  text: React.ReactElement
+    id: string
+    padded?: boolean
+    background?: 'dark' | 'grey' | 'light-grey' | 'themed'
+    text: React.ReactElement
 }
 
-const Banner = ({ id, background, text }: PropTypes) => (
-  <div
-    id={id}
-    className={cn(styles.banner, {
-      ['background-is-grey']: background === 'grey',
-      ['background-is-dark']: background === 'dark',
-      ['background-is-light-grey']: background === 'light-grey',
-      ['background-is-themed']: background === 'themed'
-    })}
-  >
-    <Container
-      fluid={true}
-      justify={'center'}
-      alignItems={'center'}
-      className={styles.bannerDecoration}
+const Banner = ({id, background, text, padded = false}: PropTypes) => (
+    <div
+        id={id}
+        className={cn(styles.banner, {
+            ['background-is-grey']: background === 'grey',
+            ['background-is-dark']: background === 'dark',
+            ['background-is-light-grey']: background === 'light-grey',
+            ['background-is-themed']: background === 'themed'
+        },
+            {[styles.bannerPadded]: padded === true}
+        )}
     >
-      <p className={cn('font-p-large', 'text-is-centered')}>{text}</p>
-    </Container>
-  </div>
+        <Container
+            fluid={true}
+            justify={'center'}
+            alignItems={'center'}
+            className={styles.bannerDecoration}
+        >
+            <p className={cn('font-p-large', 'text-is-centered')}>{text}</p>
+        </Container>
+    </div>
 )
 
 export default Banner
