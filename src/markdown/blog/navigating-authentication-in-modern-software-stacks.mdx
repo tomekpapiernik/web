@@ -1,0 +1,116 @@
+---
+path: '/navigating-authentication-in-modern-software-stacks/'
+
+title: |
+  Navigating Authentication in Modern Software Stacks
+
+teaser: |
+  Cookies and Tokens, which one do you need?
+
+seo:
+  title: |
+    Navigating Authentication in Modern Software Stacks
+  description: |
+    This guide will go through what Authentication is and how to effectively use it in your software stack
+  keywords: |
+    auth, modern software stack, authentication, tokens, cookies, OAuth2.0
+
+published: true
+
+publishedAt: '2022-03-03'
+
+author: benehiko
+
+overline: |
+  Modern Application Architecture
+
+tags:
+  - Guide
+  - Architecture
+  - Authentication
+---
+
+## Preface
+
+Authentication (AuthN), although important, always intrudes in the development
+process of software. As a software developer you probably have noticed a lot of
+precious development time is taken (even on personal projects) to add AuthN to
+your project. This is usually because of so many terminology, navigating errors
+such as CORS when working in the Browser and even contradicting resources on
+what is the _most secure_ way of implementing AuthN. Is it using Tokens such as
+JWTs? OAuth2.0? or Cookies?, the list goes on.
+
+Furthermore, when working on different stacks we have different requirements for
+User Experience (UX) and sometimes AuthN just gets in the way of that.
+
+Hopefully this article will clarify some of that confusion and allow you to
+focus on your applications' business logic.
+
+## Terminology
+
+## Authentication & Authorization
+
+Before we go any further with this blog post we first need to clarify what
+Authentication (AuthN) is and how is it different from Authorization (AuthZ).
+Here are the definitions:
+
+> Authentication: The process of verifying an identity is who they say they are
+
+> Authorization: The process of validating (through rules) if an identity or
+> service or machine is allowed to access a resource or perform a certain action
+> on a resource
+
+To put it simply, when adding login to our Application, we are talking about
+Authentication and when we are talking about who can do what on our Application,
+we are talking about Authorization.
+
+### Sessions
+
+Now that we know what AuthN is, let's dive deeper by investigating all the
+aspects of how AuthN works. With the use of a simple diagram, we can see the
+user supplies their credentials to Project X which then validates the
+credentials with the Database.
+
+![Simple Authentication](media/authentication-flow.png)
+
+What this diagram is missing is how do we ensure the user does not need to
+provide their credentials every time the user navigates to another page or does
+an action. I'm sure you have heard of the term _session_. A session just means
+we have created a mechanism to store information about the user in our
+application, in AuthN we can use this mechanism for users to always prove they
+are who they say they are without needing their credentials. So is a session
+then some sort of cookie or token? Well depending on the technology or use case,
+a session can be a query parameter in the URL, a Cookie storing some
+information, the Browsers' local storage or a Token.
+
+## The Modern Stack
+
+In our current software climate we have the requirement to support as many
+devices as possible through a single codebase, or at least in as few as
+possible. This gives us the ability to maintain the software, add new features
+and (hopefully) increase our user adoption.
+
+However, through all of this we have ended up dealing with a lot of frameworks,
+which creates a lot of abstraction. Although frameworks save us time when
+implementing a feature, it can also happen that the framework just does not
+support the underlying requirements for the feature to work.
+
+When looking at different AuthN terminology and setting up an application using
+_the modern stack_, we end up with a lot of questions. Can I use a Cookie here?
+Why would it be better for a Token here? I have even seen articles proclaim
+OAuth2.0 as the next security standard for your Web App.
+
+Let's take a look at some popular frameworks and their underlying technologies.
+I will also group these technologies into their own categories (as known
+throughout the industry).
+
+### Single Page Applications (SPA)
+
+Single Page applications run completely on the client's browser. And do not rely
+on any server interaction to display changes to the user.
+
+### Server-Side Applications
+
+### Server-Side Rendered Applications (SSR)
+
+### Native Applications
