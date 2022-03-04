@@ -255,52 +255,6 @@ export const team: TeamProps = {
       )
     },
     {
-      name: 'Lee Atchison',
-      position: 'Architecture',
-      social: [
-        {
-          network: SocialNetworks.web,
-          href: 'https://leeatchison.com/'
-        },
-        {
-          network: SocialNetworks.linkedin,
-          href: 'https://www.linkedin.com/in/leeatchison'
-        }
-      ],
-      img: (
-        <StaticImage
-          placeholder="blurred"
-          layout="constrained"
-          aspectRatio={1}
-          loading="lazy"
-          className="responsive"
-          alt="Lee Atchison"
-          src="../../images/team/lee.png"
-        />
-      )
-    },
-    {
-      name: 'Marney Kline',
-      position: 'Digital Marketing',
-      social: [
-        {
-          network: SocialNetworks.github,
-          href: 'https://github.com/marneysof'
-        }
-      ],
-      img: (
-        <StaticImage
-          placeholder="blurred"
-          layout="constrained"
-          aspectRatio={1}
-          loading="lazy"
-          className="responsive"
-          alt="Marney Kline"
-          src="../../images/team/marney.png"
-        />
-      )
-    },
-    {
       name: 'Tobias Sahl',
       position: 'Digital Marketing',
       social: [
