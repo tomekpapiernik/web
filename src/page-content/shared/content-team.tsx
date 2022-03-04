@@ -30,7 +30,7 @@ export const team: TeamProps = {
   team: [
     {
       name: 'Aeneas Rekkas',
-      position: 'Engineering',
+      position: 'Engineering, Co-Founder',
       social: [
         {
           network: SocialNetworks.github,
@@ -55,7 +55,7 @@ export const team: TeamProps = {
     },
     {
       name: 'Thomas Aidan Curran',
-      position: 'Product',
+      position: 'Product, Co-Founder',
       social: [
         {
           network: SocialNetworks.github,
