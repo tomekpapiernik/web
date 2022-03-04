@@ -48,7 +48,7 @@ focus on your applications' business logic.
 
 ## Terminology
 
-## Authentication & Authorization
+### Authentication & Authorization
 
 Before we go any further with this blog post we first need to clarify what
 Authentication (AuthN) is and how is it different from Authorization (AuthZ).
@@ -59,6 +59,11 @@ Here are the definitions:
 > Authorization: The process of validating (through rules) if an identity or
 > service or machine is allowed to access a resource or perform a certain action
 > on a resource
+
+For further reference, see these Stack Overflow posts:
+
+- https://stackoverflow.com/questions/6556522/authentication-versus-authorization
+- https://stackoverflow.com/questions/6367865/is-there-a-difference-between-authentication-and-authorization
 
 To put it simply, when adding login to our Application, we are talking about
 Authentication and when we are talking about who can do what on our Application,
@@ -93,12 +98,17 @@ and (hopefully) increase our user adoption.
 However, through all of this we have ended up dealing with a lot of frameworks,
 which creates a lot of abstraction. Although frameworks save us time when
 implementing a feature, it can also happen that the framework just does not
-support the underlying requirements for the feature to work.
+support the underlying requirements for the feature to work. This can even be
+the case when dealing with AuthN, some technologies make it difficult to
+understand how AuthN fits in without breaking the User Experience (UX).
 
-When looking at different AuthN terminology and setting up an application using
-_the modern stack_, we end up with a lot of questions. Can I use a Cookie here?
-Why would it be better for a Token here? I have even seen articles proclaim
-OAuth2.0 as the next security standard for your Web App.
+Furthermore, when looking at different AuthN terminology and setting up an
+application using _the modern stack_, we end up with a lot of questions. Can I
+use a Cookie here? Why would it be better for a Token here? I have even seen
+articles proclaim OAuth2 as the **next security standard for your Web App**
+without any context of its correct usage. This article will not address OAuth2,
+if you are interested, please take a look at the article
+[Why you probably do not need OAuth2 / OpenID Connect](/oauth2-openid-connect-do-you-need-use-cases-examples/).
 
 Let's take a look at some popular frameworks and their underlying technologies.
 I will also group these technologies into their own categories (as known
@@ -106,11 +116,31 @@ throughout the industry).
 
 ### Single Page Applications (SPA)
 
-Single Page applications run completely on the client's browser. And do not rely
-on any server interaction to display changes to the user.
+Single Page applications run completely on the client's browser and do not rely
+on any server interaction to keep the state of your data.
+[React](https://reactjs.org/), [Angular](https://angular.io/),
+[VueJs](https://vuejs.org/), etc. are examples of SPAs. If you have had any
+experience writing SPAs you would have noted that they run solely in the
+browser, basically HTML, CSS and Javascript. Even when dealing with
+[Electron](https://www.electronjs.org/) and
+[Progressive Web Apps (PWA)](https://web.dev/progressive-web-apps/) installs,
+everything is running through the browser.
 
-### Server-Side Applications
+### Server-Side Rendering (SSR) Applications
 
-### Server-Side Rendered Applications (SSR)
+Server-side rendered applications solve a different problem, however, they
+usually build upon the already existing SPA stack. The goal is for the
+application to render the pages on the server before they reach the client. This
+improves page load times since the client does not need to download all the
+Javascript assets before the first content is displayed. Some examples of frameworks that allow for SSR are
+[NextJs](https://nextjs.org/), [NuxtJs](https://v3.nuxtjs.org/)
 
 ### Native Applications
+
+Sources:
+
+- [PWA standard](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)
+- [Progressive Web Apps (PWA)](https://web.dev/progressive-web-apps/)
+- [Angular](https://angular.io/)
+- [Electron](https://www.electronjs.org/)
+- [VueJs](https://vuejs.org/)
