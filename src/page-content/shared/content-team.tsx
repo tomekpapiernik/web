@@ -299,6 +299,195 @@ export const team: TeamProps = {
           src="../../images/team/michael.png"
         />
       )
+    },
+    {
+      name: 'Adam Wałach',
+      position: 'Engineering',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/adamwalach'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Adam Wałach"
+          src="../../images/team/adam.png"
+        />
+      )
+    },
+    {
+      name: 'Andrew Minkin',
+      position: 'Developer Relations',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/gen1us2k'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Andrew Minkin"
+          src="../../images/team/andrew.png"
+        />
+      )
+    },
+    {
+      name: 'Anirudh Oppiliappan',
+      position: 'Engineering',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/icyphox'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Anirudh Oppiliappan"
+          src="../../images/team/anirudh.png"
+        />
+      )
+    },
+    {
+      name: 'Ferdynand Naczynski',
+      position: 'Engineering',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/nipsufn'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Ferdynand Naczynski"
+          src="../../images/team/ferdynand.png"
+        />
+      )
+    },
+    {
+      name: 'Leonie Habermann',
+      position: 'Operations',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/haberml'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Leonie Habermann"
+          src="../../images/team/leonie.png"
+        />
+      )
+    },
+    {
+      name: 'Marwin Hättrich',
+      position: 'Data Analytics',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/marwinhaerttrich'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Marwin Hättrich"
+          src="../../images/team/marwin.png"
+        />
+      )
+    },
+    {
+      name: 'Rebecca Gong',
+      position: 'Finance',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/RebeccaGong'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Rebecca Gong"
+          src="../../images/team/rebecca.png"
+        />
+      )
+    },
+    {
+      name: 'Rinor Gashi',
+      position: 'Marketing',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/RinorG'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Rinor Gashi"
+          src="../../images/team/rinor.png"
+        />
+      )
+    },
+    {
+      name: 'Thomasz Papiernik',
+      position: 'Technical Writing',
+      social: [
+        {
+          network: SocialNetworks.github,
+          href: 'https://github.com/tomekpapiernik'
+        }
+      ],
+      img: (
+        <StaticImage
+          placeholder="blurred"
+          layout="constrained"
+          aspectRatio={1}
+          loading="lazy"
+          className="responsive"
+          alt="Thomasz Papiernik"
+          src="../../images/team/thomasz.png"
+        />
+      )
     }
   ]
 }
