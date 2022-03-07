@@ -32,13 +32,12 @@ tags:
 
 ## Preface
 
-Authentication (AuthN), although important, always intrudes in the development
-process of software. As a software developer you probably have noticed a lot of
-precious development time is taken (even on personal projects) to add AuthN to
-your project. This is usually because of so many terminology, navigating errors
-such as CORS when working in the browser and even contradicting resources on
-what is the _most secure_ way of implementing AuthN. Is it using Tokens such as
-JWTs? OAuth2.0? or Cookies?, the list goes on.
+Auth, although important, always intrudes in the development process of
+software. As a software developer you probably have noticed a lot of precious
+development time is taken (even on personal projects) to add Auth to your
+project. This is usually because of so many terminology, navigating a sea of
+contradicting resources on what is the _most secure_ way of implementing Auth.
+Is it using Tokens such as JWTs? OAuth2.0? or Cookies?, the list goes on.
 
 Furthermore, when working on different stacks we have different requirements for
 User Experience (UX) and sometimes AuthN just gets in the way of that.
@@ -53,8 +52,10 @@ can skip ahead to [The Modern Stack](./#the-modern-stack) section.
 
 ### Authentication & Authorization
 
-Before we go any further with this blog post we first need to clarify what
-Authentication (AuthN) is and how is it different from Authorization (AuthZ).
+Before we go any further with this article we first need to clarify what Auth we
+are talking about. There are two types, Authentication (AuthN) and Authorization
+(AuthZ).
+
 Here are the definitions:
 
 > Authentication: The process of verifying an identity is who they say they are
@@ -127,7 +128,7 @@ on any server interaction to keep the state of your data.
 [React](https://reactjs.org/), [Angular](https://angular.io/),
 [VueJs](https://vuejs.org/), etc. are examples of SPAs. If you have had any
 experience writing SPAs you would have noted that they run solely in the
-browser, basically HTML, CSS and Javascript. Even when dealing with
+browser, basically HTML, CSS and JavaScript. Even when dealing with
 [Electron](https://www.electronjs.org/) and
 [Progressive Web Apps (PWA)](https://web.dev/progressive-web-apps/) installs,
 everything is running through the browser.
@@ -140,7 +141,7 @@ Server-side rendered applications solve a different problem, however, they
 usually build upon the already existing SPA stack. The goal is for the
 application to render the pages on the server before they reach the client. This
 improves page load times since the client does not need to download all the
-Javascript assets before the first content is displayed. Some examples of
+JavaScript assets before the first content is displayed. Some examples of
 frameworks that allow for SSR are [NextJs](https://nextjs.org/),
 [NuxtJs](https://v3.nuxtjs.org/)
 
@@ -164,14 +165,18 @@ using [Go](https://go.dev/), [C++](https://isocpp.org/),
 
 ## The Problem
 
-Each technology behaves differently in their respective contexts and thus requires a different solution when trying to fix AuthN.
-From the above list of technologies we can see that we can more or less split the technologies into applications that
-run on the user device and those that run on your controlled infrastructure. This can be further split into **server-side**,
+Each technology behaves differently in their respective contexts and thus
+requires a different solution when trying to implement AuthN. From the above
+list of technologies we can see that we can more or less split the technologies
+into applications that run on the user device and those that run on controlled
+infrastructure, e.g. a server. This can be further split into **server-side**,
 **browsers** and **native**.
 
 ### Browsers
 
-Browser rendered applications have a myriad of sources on AuthN all of which cause confusion since many blogs and sources advocate the usage of a different technologies to solve _sessions_.
+Browser rendered applications have a myriad of sources on AuthN all of which
+cause confusion since many blogs and sources advocate the usage of a different
+technologies to solve _sessions_.
 
 The list looks something like this:
 
@@ -179,39 +184,60 @@ The list looks something like this:
 - OAuth2 access tokens
 - Cookies
 
-To understand the limitations of browsers and the security concerns that go with it, let's take a look at the different storage mechanisms a browser offers:
+To understand the limitations of browsers and the security concerns that go with
+it, let's take a look at the different storage mechanisms a browser offers:
 
-#### localStorage
+| Storage Type             | Cookie (httpOnly) | sessionStorage | localStorage | Web Workers |
+| ------------------------ | ----------------- | -------------- | ------------ | ----------- |
+| Persists                 | ✅                | ❌             | ✅           | ✅          |
+| Origin Scoped            | ✅                | ✅             | ❌           | ✅          |
+| Accessible to JavaScript | ❌                | ✅             | ✅           | ✅          |
 
-  - persists to disk
-  - is **not** scoped to the origin
-  - accessible by Javascript
+From the table above, we can see the most insecure storage mechanism is
+`localStorage` since it is not scoped, meaning any rogue JavaScript can look up
+what is in your `localStorage` and steal credentials from a different domain. To
+understand more about the vulnerabilities associated with JavaScript and Cross
+Site Scripting (XSS) please refer to the
+[OWASP XSS](https://owasp.org/www-community/attacks/xss/) document.
 
-#### sessionStorage
+We will use Alice as an example to explain the drawbacks of each storage type.
 
-  - only in-memory
-  - is scoped to the origin e.g. https://example.com
-  - accessible by Javascript
+Alice visits `example.com` and gets some sort of token stored in her Browsers.
+With `localStorage` any other website she visits (e.g. `evil.com`) can extract
+that information (using JavaScript) and try to impersonate her on `example.com`.
+Furthermore, `sessionStorage` scopes the data which means that the origin
+`example.com` can only access `example.com` data (using JavaScript). Web Workers
+are unique in that they scope the data to the origin `example.com` and provide
+JavaScript access. So I guess it's settled then? Web Workers are the way to go?
 
-#### Web Workers
-  - only in-memory
-  - is scoped to the origin e.g. https://example.com
-  - accessible by Javascript
+Well yes and no. Quoting from the
+[OWASP Session Management Cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-workers):
 
-#### Cookie Storage
-  - persists until its expiry
-  - is scoped to that origin
-  - not accessible by Javascript with `httpOnly` attribute
+> If the frontend JavaScript code requires access to the secret, the Web Worker
+> implementation is the only browser storage option that preserves the secret
+> confidentiality.
 
-This [OWASP HTML5 storage cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#html5-web-storage-api) helps us understand the differences between these.
+This is a niche case, most of the time we do not require any JavaScript to
+access the token. On top of this **we are then responsible** to not introduce
+any bugs that could leak the token. That is where Cookies come in.
 
+The interesting part about Cookies are that they provide all features we want
+for a `session` to exist minus the headache of managing them, **they are managed
+for us by the browser**. They persist to disk (until their expiry date) and are
+scoped to the Origin. We can even ensure they are not transmitted over unsecure
+channels by using the `Secure` attribute. Since the browser is managing the
+cookie, it **decreases the risk** for us so that we don't accidentally leak it.
+If you want to know more about Cookies and their attributes, I would strongly
+suggest checking
+[OWASP Testing Cookies](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes).
 
-## Vulnerabilities
+With that said, it all boils down to your use case and using a token such as a
+JWT or a Cookie mostly relies on your use case. At [Ory](https://www.ory.sh) we
+believe that Cookies are the way to go when **using a Browser** and thus enforce
+all the best Cookie practices in products such as
+[Kratos](https://www.ory.sh/kratos).
 
-https://owasp.org/www-community/attacks/xss/
-https://security.stackexchange.com/questions/14093/why-is-passing-the-session-id-as-url-parameter-insecure
-
-Sources:
+## Sources
 
 - [PWA standard](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)
 - [Progressive Web Apps (PWA)](https://web.dev/progressive-web-apps/)
