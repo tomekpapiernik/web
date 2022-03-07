@@ -419,7 +419,7 @@ export const team: TeamProps = {
     },
     {
       name: 'Marwin Härttrich',
-      position: 'Data Analytics',
+      position: 'Digital Marketing',
       social: [
         {
           network: SocialNetworks.github,
