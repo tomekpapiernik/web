@@ -469,7 +469,7 @@ export const team: TeamProps = {
       )
     },
     {
-      name: 'Thomasz Papiernik',
+      name: 'Tomasz Papiernik',
       position: 'Technical Writing',
       social: [
         {
