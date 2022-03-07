@@ -484,7 +484,7 @@ export const team: TeamProps = {
           aspectRatio={1}
           loading="lazy"
           className="responsive"
-          alt="Thomasz Papiernik"
+          alt="Tomasz Papiernik"
           src="../../images/team/thomasz.png"
         />
       )
