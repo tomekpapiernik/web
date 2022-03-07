@@ -307,6 +307,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/adamwalach'
+        },
+        {
+          network: SocialNetworks.linkedin,
+          href: 'https://www.linkedin.com/in/adamwalach/'
         }
       ],
       img: (
@@ -462,6 +466,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/RinorG'
+        },
+        {
+          network: SocialNetworks.linkedin,
+          href: 'https://www.linkedin.com/in/rinor-gashi-1aab781bb/'
         }
       ],
       img: (
@@ -483,6 +491,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/tomekpapiernik'
+        },
+        {
+          network: SocialNetworks.linkedin,
+          href: 'https://www.linkedin.com/in/tomekpapiernik/'
         }
       ],
       img: (
