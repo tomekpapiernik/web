@@ -381,7 +381,7 @@ export const team: TeamProps = {
         },
         {
           network: SocialNetworks.linkedin,
-          href: 'http://linkedin.com/in/rebecca-qian-g-24b86b16'
+          href: 'https://linkedin.com/in/rebecca-qian-g-24b86b16'
         }
       ],
       img: (
