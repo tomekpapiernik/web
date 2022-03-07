@@ -418,7 +418,7 @@ export const team: TeamProps = {
       )
     },
     {
-      name: 'Marwin Hättrich',
+      name: 'Marwin Härttrich',
       position: 'Data Analytics',
       social: [
         {
@@ -433,7 +433,7 @@ export const team: TeamProps = {
           aspectRatio={1}
           loading="lazy"
           className="responsive"
-          alt="Marwin Hättrich"
+          alt="Marwin Härttrich"
           src="../../images/team/marwin.png"
         />
       )
