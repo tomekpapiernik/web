@@ -103,13 +103,13 @@ However, through all of this we have ended up dealing with a lot of frameworks,
 which creates a lot of abstraction. Although frameworks save us time when
 implementing a feature, it can also happen that the framework just does not
 support the underlying requirements for the feature. This can even be the case
-when dealing with AuthN, some technologies do not provide a clarity on how AuthN
+when dealing with AuthN, some technologies do not provide clarity on how AuthN
 fits in without breaking the User Experience (UX).
 
 Furthermore, when looking at different AuthN terminology and setting up an
 application using _the modern stack_, we end up with a lot of questions. Can I
 use a Cookie here? Why would it be better for a Token here? I have even seen
-articles proclaim OAuth2 as the **next security standard for your Web App**
+articles proclaim OAuth2.0 as the **next security standard for your Web App**
 without any context of its correct usage. This article will not address OAuth2,
 if you are interested, please take a look at the article
 [Why you probably do not need OAuth2 / OpenID Connect](/oauth2-openid-connect-do-you-need-use-cases-examples/).
@@ -151,15 +151,14 @@ frameworks that allow for SSR are [NextJs](https://nextjs.org/),
 
 Applications that run on Android, iOS, Desktop and Server are all forms of
 Native Applications. These applications usually provide native performance and
-utilizes the Operating System's user interface to render input/output to the
-user.
+utilizes the Operating System's user interface to render the UI.
 
 Examples of Frameworks that allow for Native Application development are
 [Android](https://developer.android.com/), [iOS](https://developer.apple.com/)
 and [.NET](https://dotnet.microsoft.com/).
 
 Command Line Interface (CLI) Applications executed using a terminal or command
-line on the Operating System also count as Native Applications and can be build
+line on the Operating System also count as Native Applications and can be built
 using [Go](https://go.dev/), [C++](https://isocpp.org/),
 [Python](https://www.python.org/), [NodeJs](https://nodejs.org/) etc.
 
@@ -193,22 +192,19 @@ it, let's take a look at the different storage mechanisms a browser offers:
 | Origin Scoped            | ✅                | ✅             | ❌           | ✅          |
 | Accessible to JavaScript | ❌                | ✅             | ✅           | ✅          |
 
-From the table above, we can see the most insecure storage mechanism is
-`localStorage` since it is not scoped, meaning any rogue JavaScript can look up
-what is in your `localStorage` and steal credentials from a different domain. To
-understand more about the vulnerabilities associated with JavaScript and Cross
-Site Scripting (XSS) please refer to the
-[OWASP XSS](https://owasp.org/www-community/attacks/xss/) document.
-
 We will use Alice as an example to explain the drawbacks of each storage type.
 
 Alice visits `example.com` and gets some sort of token stored in her Browsers.
 With `localStorage` any other website she visits (e.g. `evil.com`) can extract
 that information (using JavaScript) and try to impersonate her on `example.com`.
+
 Furthermore, `sessionStorage` scopes the data which means that the origin
-`example.com` can only access `example.com` data (using JavaScript). Web Workers
-are unique in that they scope the data to the origin `example.com` and provide
-JavaScript access. So I guess it's settled then? Web Workers are the way to go?
+`example.com` can only access `example.com` data (using JavaScript).
+
+Web Workers are unique in that they scope the data to the origin `example.com`
+and provide JavaScript access.
+
+So I guess it's settled then? Web Workers are the way to go?
 
 Well yes and no. Quoting from the
 [OWASP Session Management Cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-workers):
@@ -221,14 +217,16 @@ This is a niche case, most of the time we do not require any JavaScript to
 access the token. On top of this **we are then responsible** to not introduce
 any bugs that could leak the token. That is where Cookies come in.
 
-The interesting part about Cookies are that they provide all features we want
-for a `session` to exist minus the headache of managing them, **they are managed
-for us by the browser**. They persist to disk (until their expiry date) and are
-scoped to the Origin. We can even ensure they are not transmitted over unsecure
-channels by using the `Secure` attribute. Since the browser is managing the
-cookie, it **decreases the risk** for us so that we don't accidentally leak it.
+The interesting part about Cookies are that they provide all the features we
+want for `session` storage minus the headache of managing them, **they are
+managed for us by the browser**. They persist to disk (until their expiry date)
+and are scoped to the origin. We can even ensure they are not transmitted over
+unsecure channels by using the `Secure` attribute. Since the browser is managing
+the cookie, it **decreases the risk** of a security vulnerability accidentally
+leaking the session.
+
 If you want to know more about Cookies and their attributes, I would strongly
-suggest checking
+suggest checking out
 [OWASP Testing Cookies](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes).
 
 With that said, it all boils down to your use case and using a token such as a
@@ -236,6 +234,36 @@ JWT or a Cookie mostly relies on your use case. At [Ory](https://www.ory.sh) we
 believe that Cookies are the way to go when **using a Browser** and thus enforce
 all the best Cookie practices in products such as
 [Kratos](https://www.ory.sh/kratos).
+
+To understand more about the vulnerabilities associated with JavaScript and
+Cross Site Scripting (XSS) please refer to the
+[OWASP XSS](https://owasp.org/www-community/attacks/xss/) document.
+
+### Server-Side and Native
+
+These technologies do have their own set of problems, however, they are
+_usually_ easier in storing sensitive information since the environment they run
+in is by definition more secure. This of course does rely on your security
+practices, such as who has access to your servers and how you configure access
+from the outside.
+
+But let's say for argument’s sake the environment is secure, then tokens can
+easily be issued to a server and kept in-memory - it is not needed to store on
+disk since, hopefully, your server does not restart every couple of hours ;)
+
+On mobile Android and iOS each have their own methodology of storing Tokens, but
+it comes down to the same concept, these systems inherently do not share storage
+through e.g. Shared Preferences (on Android) with other Apps on the device.
+
+## Conclusion
+
+There is no silver bullet in security that will fix all of our problems. But by
+relying on good resources, such as [OWASP](https://owasp.org) we can better
+understand how to navigate security pitfalls.
+
+With that said, [Ory](https://www.ory.sh) believes that relying on already
+established software that are well-tested and always up to date is the best
+approach to securing your users' data.
 
 ## Sources
 
