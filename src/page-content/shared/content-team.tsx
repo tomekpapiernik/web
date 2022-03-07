@@ -349,6 +349,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/icyphox'
+        },
+        {
+          network: SocialNetworks.web,
+          href: 'https://icyphox.sh'
         }
       ],
       img: (
