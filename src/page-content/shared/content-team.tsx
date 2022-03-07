@@ -485,7 +485,7 @@ export const team: TeamProps = {
           loading="lazy"
           className="responsive"
           alt="Tomasz Papiernik"
-          src="../../images/team/thomasz.png"
+          src="../../images/team/tomasz.png"
         />
       )
     }
