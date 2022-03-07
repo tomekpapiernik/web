@@ -437,6 +437,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/RebeccaGong'
+        },
+        {
+          network: SocialNetworks.linkedin,
+          href: 'http://linkedin.com/in/rebecca-qian-g-24b86b16'
         }
       ],
       img: (
