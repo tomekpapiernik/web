@@ -302,7 +302,7 @@ export const team: TeamProps = {
     },
     {
       name: 'Rinor Gashi',
-      position: 'Marketing',
+      position: 'Digital Marketing',
       social: [
         {
           network: SocialNetworks.github,
