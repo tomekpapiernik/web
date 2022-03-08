@@ -357,6 +357,10 @@ export const team: TeamProps = {
         {
           network: SocialNetworks.github,
           href: 'https://github.com/haberml'
+        },
+        {
+          network: SocialNetworks.linkedin,
+          href: 'https://www.linkedin.com/in/leonie-habermann-261551b8/'
         }
       ],
       img: (
