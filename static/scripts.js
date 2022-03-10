@@ -3,12 +3,6 @@
   const host = window.location.hostname
   if(host === 'www.ory.sh' || host === 'console.ory.sh') {
 
-    // add gtag wrapper
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
-
     const loadConsentBanner = () => {
       const dependencies = [
         'https://cdn.iubenda.com/cs/ccpa/stub.js',
@@ -44,61 +38,61 @@
     
     const eventsOnBannerInteraction = {
       onPreferenceExpressed: (preference = {}) => {
-        // const dataLayer = window.dataLayer
-        gtag({
+        const dataLayer = window.dataLayer
+        dataLayer.push({
           iubenda_ccpa_opted_out: window._iub.cs.api.isCcpaOptedOut()
         })
         if (preference.purposes) {
           for (const category in preference.purposes) {
             if (preference.purposes[category]) {
               const purpose = `iubenda_consent_given_purpose_${category}`
-              gtag({
+              dataLayer.push({
                 'event': purpose,
                 [purpose]: 'true'
               })
               if (category == 4) {
-                gtag('consent', 'update', {
+                dataLayer.push('consent', 'update', {
                   'analytics_storage': 'granted'
-                });
+                })
               }
               if (category == 5) {
-                gtag('consent', 'update', {
+                dataLayer.push('consent', 'update', {
                   'ad_storage': 'granted'
-                });
+                })
               }
             }
           }
         }
       },
       onPreferenceNotNeeded: () => {
-        gtag({
+        dataLayer.push({
           'event': 'iubenda_preference_not_needed',
           'iubenda_preference_not_needed': 'true'
         })
         // Update consent settings
-        gtag('consent', 'update', {
+        dataLayer.push('consent', 'update', {
           'ad_storage': 'granted',
           'analytics_storage': 'granted'
-        });
+        })
         return
       }
     }
     
     const initAnalytics = () => {
-      // window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || []
 
       // Set default values for tag manager consent mode
-      gtag('consent', 'default', {
+      dataLayer.push('consent', 'default', {
         'ad_storage': 'denied',
         'analytics_storage': 'denied',
         'wait_for_update': 2000
-      });
+      })
 
       // Improve campaign click measurement quality
-      gtag('set', 'url_passthrough', true);
+      dataLayer.push('set', 'url_passthrough', true)
 
       // Further redact your ads data
-      gtag('set', 'ads_data_redaction', true);
+      dataLayer.push('set', 'ads_data_redaction', true)
 
       const _iub = window._iub || {}
       _iub.csConfiguration = {
