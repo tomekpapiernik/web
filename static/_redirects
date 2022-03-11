@@ -284,3 +284,9 @@ https://www.ory.sh/blog/tag/qualitity-assurance https://www.ory.sh/blog/tag/qual
 /kratos/docs/* https://www.ory.sh/docs/kratos/:splat 302!
 /oathkeeper/docs/* https://www.ory.sh/docs/oathkeeper/:splat 302!
 /hydra/docs/* https://www.ory.sh/docs/hydra/:splat 302!
+
+# 03/22 Delete empty documentation pages
+
+https://www.ory.sh/docs/get-started https://www.ory.sh/docs/welcome 302!
+
+https://www.ory.sh/docs/sdk https://www.ory.sh/docs/guides 302!
