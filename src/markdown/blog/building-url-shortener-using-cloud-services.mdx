@@ -1,10 +1,10 @@
 ---
 templateKey: blog
-path: '/building-cloud-native-todo-list-using-supabase-database-and-ory-cloud/'
+path: '/building-url-shortener-using-cloud-services/'
 author: gen1us2k
-title: Building Cloud Native todolist using Supabase database and Ory Cloud
+title: Building url shortener project using Supabase database and Ory Cloud
 teaser: Building todo list API using ready-to-use solutions
-subtitle: Step-by-step guide to create todolist with authentication using Cloud solutions
+subtitle: Step-by-step guide to create urlshortener with authentication using Cloud solutions
 overline: Ory Cloud and Supabase guide
 publishedAt: 2022-02-26
 published: true
@@ -25,36 +25,59 @@ The full code of this guide can be found [here](https://github.com/gen1us2k/clou
 
 ## What technologies do we use in this example
 
-[gRPC](https://grpc.io/) is a modern open-source high-performance Remote Procedure Call (RPC) framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking and authentication. It is also applicable in last mile of distributed computing to connect devices, mobile applications and browsers to backend services.
-
-The [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) is a plugin of the Google protocol buffers compiler protoc. It reads protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC. This server is generated according to the google.api.http annotations in your service definitions.
-
 [Ory Kratos](https://www.ory.sh/kratos/docs/) manage identities and users in the cloud Headless and configurable authentication and user management, including MFA, social login, custom identities, and more.
 
 [Supabase](https://supabase.com) is the opensource alternative of firebase. Supabase Database comes with a full [Postgres](https://www.postgresql.org/) database, a free and open-source database that is considered one of the world's most stable and advanced databases.
 
+[Ory Oathkeeper](https://www.ory.sh/docs/oathkeeper) as Identity and access proxy
 
-## Why gRPC
+[Nuxt.js](https://nuxtjs.org) as frontend
 
-gRPC has the following features that make developer experience building APIs friendly
+[TailwindCSS](https://tailwindcss.com/)
 
-- Code Generation. The Proto file represents a contract of gRPC services and messages. The protoc compiler generates a complete client.
-- Protocol buffers enable strict specification and strongly typed messages. gRPC is consistent across platforms and specifications.
-- Deadline/timeouts and cancellation.
-- Teams can't skip the process of defining schemas and writing documentation for their APIs.
+[Migrate](https://github.com/golang-migrate/migrate) to perform database migrations
 
-**gRPC weaknesses**
+[Postgres]() as an additional storage
 
-- Lack of browser support
-- Not human-readable
+## Why I chose Go/Gin/Migrate for this project
 
-Despite the weaknesses above, gRPC is still good for:
+I'm huge fan of Go programming language and I've been coding using Go from late 2014. I built couple of projects and I love simplicity of Go and ecosystem around it.
 
-- Building communication protocol between microservices.
-- Building API for mobile apps. gRPC has excellent support for bi-directional streaming. Hence you can easily add real-time communication features to your mobile app.
-- Network constraint environments gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message and uses less CPU time for encoding/decoding messages.
+Go is simple, but ecosystem and tooling around language are great.
 
-In this example, we will build a todolist API for mobile apps using gRPC.  We will use REST endpoints as a fallback for browsers. Let's start configuring supabase
+Reasons to Go
+
+- Golangcilinter
+- Staticly and strongly typed programming language
+- Lightwheight docker containers
+- Code readability
+- Easy to follow SOLID principles and clean architecture
+
+### Gomigrate vs Goose
+
+I used both goose and golang-migrate in my pet projects and projects in production. My first tool managing database migrations was mattes/migrate (It's golang-migrate now) but something changed in transition from 2 to 3 versions and I moved to goose. Then I had a break using Go and I decided to make a research.
+
+My requirements for Go migration tool:
+
+1. Plain SQL migrations support. I don't want to learn an additional filetype format. I know SQL and I know how to create tables. That's enough. Unlike Django Go does not have any good Active Record pattern implementations. I hope that there will be more ORMs and better tooling once Go 1.18 released (Generics are on the way).
+2. Support of opensource RDBMS like Postgres, MySQL (and all their forks), Oracle (but I don't use it yet)
+3. Programmable API or shorthanded way to apply migrations
+4. Upward/Downward support
+
+Both projects are awesome they meet my needs but I chose migrate because it supports more databases (I'm going to use different databases in my example in nearest future and write blog posts)
+
+### Gin.
+
+I'm huge fan of gRPC when I build APIs with Go and I used it a lot in my previous experience. Also, I'm huge fan of echo framework. I chose gin because of it's simplicity and feature rich support. Actually a simple `net/http` would be enough to build this project with httprouter but to make things more conveinent I chose gin.
+
+
+## Why Nuxt.js and TailwindCSS
+Because I can
+
+## Small disclaimer about the frontend part
+
+I assume that example can have some mistakes of building frontend, but I'm not frontend engineer so please understand me and forgive me :D
+
 
 ## Step 1. Creating Supabase Project
 
