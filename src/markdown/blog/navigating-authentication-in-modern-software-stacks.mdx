@@ -34,10 +34,10 @@ tags:
 
 Auth, although important, always intrudes in the development process of
 software. As a software developer you probably have noticed a lot of precious
-development time is taken (even on personal projects) to add Auth to your
-project. This is usually because of so many terminology, navigating a sea of
-contradicting resources on what is the _most secure_ way of implementing Auth.
-Is it using Tokens such as JWTs? OAuth2.0? or Cookies?, the list goes on.
+development time is taken to add Auth to a project. This is usually because of
+so many terminology, navigating a sea of contradicting resources on what is the
+_most secure_ way of implementing Auth. Is it using Tokens such as JWTs?
+OAuth2.0? or Cookies?, the list goes on.
 
 Furthermore, when working on different stacks we have different requirements for
 User Experience (UX) and sometimes AuthN just gets in the way of that.
@@ -58,11 +58,12 @@ are talking about. There are two types, Authentication (AuthN) and Authorization
 
 Here are the definitions:
 
-> Authentication: The process of verifying an identity is who they say they are
+> Authentication: The process of verifying that an identity (person, device,
+> program) is who they say they are
 
-> Authorization: The process of validating (through rules) if an identity or
-> service or machine is allowed to access a resource or perform a certain action
-> on a resource
+> Authorization: The process of validating if an identity (person, device,
+> program) is allowed to access a resource or perform a certain action on a
+> resource.
 
 For further reference, see these Stack Overflow posts:
 
@@ -89,8 +90,8 @@ we have created a mechanism to store information about the user in our
 application, in AuthN we can use this mechanism for users to always prove they
 are who they say they are without needing their credentials. So is a session
 then some sort of cookie or token? Well depending on the technology or use case,
-a session can be a query parameter in the URL, a Cookie storing some
-information, the browser's local storage or a Token.
+a session can be a query parameter in the URL, a cookie storing some
+information, the browser's local storage or a token.
 
 ## The Modern Stack
 
@@ -108,7 +109,7 @@ fits in without breaking the User Experience (UX).
 
 Furthermore, when looking at different AuthN terminology and setting up an
 application using _the modern stack_, we end up with a lot of questions. Can I
-use a Cookie here? Why would it be better for a Token here? I have even seen
+use a cookie here? Why would it be better for a token here? I have even seen
 articles proclaim OAuth2.0 as the **next security standard for your Web App**
 without any context of its correct usage. This article will not address OAuth2,
 if you are interested, please take a look at the article
@@ -151,15 +152,15 @@ frameworks that allow for SSR are [NextJs](https://nextjs.org/),
 
 Applications that run on Android, iOS, Desktop and Server are all forms of
 Native Applications. These applications usually provide native performance and
-utilizes the Operating System's user interface to render the UI.
+utilizes the Operating System to render the User Interface (UI).
 
 Examples of Frameworks that allow for Native Application development are
 [Android](https://developer.android.com/), [iOS](https://developer.apple.com/)
 and [.NET](https://dotnet.microsoft.com/).
 
 Command Line Interface (CLI) Applications executed using a terminal or command
-line on the Operating System also count as Native Applications and can be built
-using [Go](https://go.dev/), [C++](https://isocpp.org/),
+line on the Operating System also fall into the category of Native Applications
+and can be built using [Go](https://go.dev/), [C++](https://isocpp.org/),
 [Python](https://www.python.org/), [NodeJs](https://nodejs.org/) etc.
 
 ## The Problem
@@ -199,41 +200,43 @@ With `localStorage` any other website she visits (e.g. `evil.com`) can extract
 that information (using JavaScript) and try to impersonate her on `example.com`.
 
 Furthermore, `sessionStorage` scopes the data which means that the origin
-`example.com` can only access `example.com` data (using JavaScript).
+`example.com` can only access `example.com` data (using JavaScript), but does
+not persist. So once the tab/window is closed, the token is gone!
+
+With `cookies` - note the `httpOnly` attribute - we get persistence (until
+expiry), origin scope and no JavaScript access.
 
 Web Workers are unique in that they scope the data to the origin `example.com`
-and provide JavaScript access.
+and provide JavaScript access and the storage persists.
 
-So I guess it's settled then? Web Workers are the way to go?
+So I guess it's settled then? Web Workers are the way to go? :thinking:
 
 Well yes and no. Quoting from the
 [OWASP Session Management Cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-workers):
 
-> If the frontend JavaScript code requires access to the secret, the Web Worker
+> The advantage of a Web Worker implementation compared to an HttpOnly cookie is
+> that a Web Worker allows for some isolated JavaScript code to access the
+> secret; an HttpOnly cookie is not accessible to any JavaScript. If the
+> frontend JavaScript code requires access to the secret, the Web Worker
 > implementation is the only browser storage option that preserves the secret
 > confidentiality.
 
 This is a niche case, most of the time we do not require any JavaScript to
-access the token. On top of this **we are then responsible** to not introduce
-any bugs that could leak the token. That is where Cookies come in.
+access the secret (session value). On top of this **we are then responsible** to
+not introduce any bugs that could leak the secret. That is where cookies come
+in.
 
-The interesting part about Cookies are that they provide all the features we
+The interesting part about cookies are that they provide all the features we
 want for `session` storage minus the headache of managing them, **they are
-managed for us by the browser**. They persist to disk (until their expiry date)
-and are scoped to the origin. We can even ensure they are not transmitted over
-unsecure channels by using the `Secure` attribute. Since the browser is managing
-the cookie, it **decreases the risk** of a security vulnerability accidentally
-leaking the session.
+managed for us by the browser**. They persist after tabs/windows close (until
+their expiry date) and are scoped to the origin. We can even ensure they are not
+transmitted over unsecure channels by using the `Secure` attribute. Since the
+browser is managing the cookie, it **decreases the risk** of a security
+vulnerability accidentally leaking the session.
 
-If you want to know more about Cookies and their attributes, I would strongly
+If you want to know more about cookies and their attributes, I would strongly
 suggest checking out
 [OWASP Testing Cookies](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes).
-
-With that said, it all boils down to your use case and using a token such as a
-JWT or a Cookie mostly relies on your use case. At [Ory](https://www.ory.sh) we
-believe that Cookies are the way to go when **using a Browser** and thus enforce
-all the best Cookie practices in products such as
-[Kratos](https://www.ory.sh/kratos).
 
 To understand more about the vulnerabilities associated with JavaScript and
 Cross Site Scripting (XSS) please refer to the
@@ -261,11 +264,13 @@ There is no silver bullet in security that will fix all of our problems. But by
 relying on good resources, such as [OWASP](https://owasp.org) we can better
 understand how to navigate security pitfalls.
 
-With that said, [Ory](https://www.ory.sh) believes that relying on already
-established software that are well-tested and always up to date is the best
-approach to securing your users' data.
+With that said, it all boils down to your use case and using a token such as a
+JWT or a cookie mostly relies on your use case. With
+[Ory Kratos](https://www.ory.sh/kratos) we decided to stick with cookies
+(httpOnly) when **using a Browser** and tokens when **using a Native
+Application**.
 
-## Sources
+### Sources
 
 - [PWA standard](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)
 - [Progressive Web Apps (PWA)](https://web.dev/progressive-web-apps/)
