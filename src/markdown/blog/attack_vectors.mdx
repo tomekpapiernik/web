@@ -1,0 +1,70 @@
+---
+path: '/how-to-defend-your-sso-from-all-attack-types/'
+
+title: |
+  Attack vectors to SSO service
+
+teaser: |
+  In this article we'll most popular attack vectors to authentication service
+
+seo:
+  title: |
+    Learn how to build a custom Slack bot using the Events API
+  description: |
+    In this guide you will learn how to personalize community onboarding using a custom built Slack bot and host it on AWS Lambda for free.
+  keywords: |
+    community, auth, onboarding, slack events api, slack bot guide, slack bot, message bot, custom bot, community building
+
+publishedAt: '2022-02-23'
+author: gen1us2k
+
+overline: |
+  Community Onboarding
+
+published: true
+tags:
+  - Open Source
+  - Guide
+---
+
+
+## Intro
+
+## Attack vectors and how to defend them
+
+## Password guessing
+
+- bruteforce (next auth delay, password strength check)
+- Dictionary guessing (Antifraud service, password strength check)
+- Rainbow tables (bcrypt, correct usage of salt)
+
+## Data interception
+
+- Wifi sniffing (SSL)
+- MitM interception (SSL)
+- keylogger (copying of input) (2FA)
+- Screen spying (2FA)
+- cookie leak (XSS or virus/trojan) (oauth2/short cookie lifetime, privilegies separation)
+- SSL vulnerabilities (security audit, periodical check of SSL configuration) (Shout out to compliances)
+
+## Phishing attacks
+
+- Phishing pages (Bind cookie to user ip)
+- MitM interception (SSL, PKP, HSTS) (https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning)
+- DNS poison (SSL, PKP, HSTS)
+- Browser poison (2FA OCRA+TDS)
+-  "Connect" request interception (CSRF token on auth forms )
+
+## Social Engineering
+
+- 2FA leak (notifications about user's activity, antifraud, access blocking procedure)
+- Password leak (2FA, oauth2)
+- Access recovery (Access recovery)
+- Device stealing (block/allow access procedures)
+
+## inner threats
+
+- sessions leak from server (short session lifetime)
+- passwords database leak from server (bcrypt, correct usage of salt)
+- inner interception of network traffic (SSL usage between services, key and certificates management, certificate short lifetime)
+- logfiles leak from server (logs filtration, masking of passwords and personal data)
