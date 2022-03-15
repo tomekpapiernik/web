@@ -6,7 +6,7 @@ title: Building url shortener project using Supabase database and Ory Cloud
 teaser: Building todo list API using ready-to-use solutions
 subtitle: Step-by-step guide to create urlshortener with authentication using Cloud solutions
 overline: Ory Cloud and Supabase guide
-publishedAt: 2022-02-26
+publishedAt: 2022-03-15
 published: true
 description: ''
 tags:
@@ -19,43 +19,48 @@ tags:
 
 import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
 
-This guide steps through building a gRPC API with REST endpoints and uses Supabase as Cloud Database and Ory Kratos for authenticating users. We configure Ory Cloud to handle authenticating users and managing tokens while writing logic to store data in Supabase Database.
+One can save time by using ready solutions to build a completely new product. Many startups solve one problem and do it best. For instance, we have at least three cloud providers to host our code. We have multiple choices on what to choose to build a frontend for our next project. At least we have vue.js and react.js projects with broad communities.
+In this article, I'll show you an example of how to build an URL shortener using a modern technology stack.
 
-The full code of this guide can be found [here](https://github.com/gen1us2k/cloudnative_todo_list)
+You can find complete project [here](https://github.com/gen1us2k/shorts)
 
 ## What technologies do we use in this example
 
-[Ory Kratos](https://www.ory.sh/kratos/docs/) manage identities and users in the cloud Headless and configurable authentication and user management, including MFA, social login, custom identities, and more.
+[Ory Kratos](https://www.ory.sh/kratos/docs/) to manage identities and users. We'll use an open source self-hosted version in this article, but consider using [Ory Cloud](https://ory.sh/docs/cloud) in the production.
 
-[Supabase](https://supabase.com) is the opensource alternative of firebase. Supabase Database comes with a full [Postgres](https://www.postgresql.org/) database, a free and open-source database that is considered one of the world's most stable and advanced databases.
+[Supabase](https://supabase.com) is the opensource alternative of firebase. Supabase Database comes with a full [Postgres](https://www.postgresql.org/) database, a free and open-source database that is considered one of the world's most stable and advanced databases. We'll use Supabase as Database for our url shortener project
 
-[Ory Oathkeeper](https://www.ory.sh/docs/oathkeeper) as Identity and access proxy
+[Ory Oathkeeper](https://www.ory.sh/docs/oathkeeper) would be a great example of applying Zero Trust architecture for our project. We'll use it as Identity and access proxy.
 
-[Nuxt.js](https://nuxtjs.org) as frontend
+[Nuxt.js](https://nuxtjs.org) to build Vue.js application with confidence . An open source framework making web development simple and powerful.
 
-[TailwindCSS](https://tailwindcss.com/)
+[TailwindCSS](https://tailwindcss.com/) A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
 
 [Migrate](https://github.com/golang-migrate/migrate) to perform database migrations
 
-[Postgres]() as an additional storage
+[Postgres](https://www.postgresql.org/) is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
-## Why I chose Go/Gin/Migrate for this project
 
-I'm huge fan of Go programming language and I've been coding using Go from late 2014. I built couple of projects and I love simplicity of Go and ecosystem around it.
 
-Go is simple, but ecosystem and tooling around language are great.
+## A short explanation about backend choices
 
-Reasons to Go
+I'm a huge fan of the Go programming language, and I've been coding using this language since late 2014. I love the simplicity of Go language design and the ecosystem around it. Why to Go
 
-- Golangcilinter
-- Staticly and strongly typed programming language
-- Lightwheight docker containers
-- Code readability
-- Easy to follow SOLID principles and clean architecture
+- It's good to perform static code analysis to make your backend systems more robust and stable. GolangCI-lint is a feature-rich linter that gives you feedback about your code. You can find a lot of linters available.
+- Strongly typed programming language with static data types. One does not need to write tests to check that your code will never mess with data types. `int i' makes `i' int forever.
+- It's easy to follow SOLID principles and clear architecture using Go.
+- In addition, Go is fast and well-scaled programming language
 
-### Gomigrate vs Goose
+### Database migrations
 
-I used both goose and golang-migrate in my pet projects and projects in production. My first tool managing database migrations was mattes/migrate (It's golang-migrate now) but something changed in transition from 2 to 3 versions and I moved to goose. Then I had a break using Go and I decided to make a research.
+Database migrations should be used once you use any RDMBS in your project because you need to change database schema time-to-time. It helps you track versions of your schema and easily perform forwards and downwards migrations. In the pythonic world, it's easy to decide what tool to use for schema migration because it's usually come out of the box by the selected framework. For instance, we have flask-migrate for flask and Django migrations for Django. Since Go uses UNIX philosophy to build the architecture of your project, you need to choose
+
+- HTTP router for your endpoints
+- Requests multiplexor
+- ORM or a library to work with the database
+- a tool to perform migrations
+
+Go programming language has at least two tools for schema migrations. I used both goose and migrate, and in this project, I decided to go with migrate. Migrate supports more databases, and I want to make the DB layer in this project database agnostic.
 
 My requirements for Go migration tool:
 
@@ -64,22 +69,50 @@ My requirements for Go migration tool:
 3. Programmable API or shorthanded way to apply migrations
 4. Upward/Downward support
 
-Both projects are awesome they meet my needs but I chose migrate because it supports more databases (I'm going to use different databases in my example in nearest future and write blog posts)
 
 ### Gin.
 
+A URL shortener is a lightweight service, and it would be best to have a simple enough package to build an HTTP API around it. You  have several options on what to choose to solve this issue, and the most popular frameworks are
+
+- Echo
+- Gin
+- Go-kit
+
+Go-kit is an excellent framework for building a complex system with many microservices. Even a simple net/http with http router would be enough for our example. Usually, I toss a coin when I choose between echo and gin, so I use gin in this project.
+
 I'm huge fan of gRPC when I build APIs with Go and I used it a lot in my previous experience. Also, I'm huge fan of echo framework. I chose gin because of it's simplicity and feature rich support. Actually a simple `net/http` would be enough to build this project with httprouter but to make things more conveinent I chose gin.
 
+Okay. Let's start hacking, shall we?
 
-## Why Nuxt.js and TailwindCSS
-Because I can
+## Defining Database schema.
 
-## Small disclaimer about the frontend part
+The URL shortener should have the following tables:
 
-I assume that example can have some mistakes of building frontend, but I'm not frontend engineer so please understand me and forgive me :D
+- `url` table to store shortened URLs
+- `url_view` table to store views. This information will be useful to build additional reports for users about top referrers, urlviews or something else.
 
+```sql
+CREATE TABLE IF NOT EXISTS url (
+	id SERIAL PRIMARY KEY,
+	url VARCHAR(255) NOT NULL DEFAULT '',
+	hash varchar(10) NOT NULL DEFAULT '',
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	expired_at TIMESTAMP WITH TIME ZONE,
+	owner_id VARCHAR(36) NOT NULL DEFAULT ''
+);
 
-## Step 1. Creating Supabase Project
+CREATE UNIQUE INDEX idx_url_hash ON url(hash);
+
+CREATE TABLE IF NOT EXISTS url_view (
+	id SERIAL PRIMARY KEY,
+	referer VARCHAR(255) NOT NULL DEFAULT '',
+	url_id INT NOT NULL,
+	CONSTRAINT fk_url_view FOREIGN KEY(url_id) REFERENCES url(id)
+);
+```
+
+## Creating supabase project and tables
+
 
 - From your [Supabase dashboard](https://app.supabase.io/) , click `New project`.
 - Enter a `Name` for your Supabase project.
@@ -89,23 +122,70 @@ I assume that example can have some mistakes of building frontend, but I'm not f
 
 ![Create Project](./media/supabase/supabase-create-project.png)
 
-After a couple of minutes of bootstrapping your project, you can create tables and work with the database. Open Table editor and click on `Create a new table` button.
+- Open table editor
+- Click on `SQL editor` on sidebar
+- Insert SQL table definition from the previous step
+- Click Run to create tables
 
-- title `varchar`
-- status `varchar`
-- owner_id `varchar`
+![Create tables](./media/supabase/supabase-create-table.png)
 
-![Create a table](./media/supabase/supabase-create-table.png)
+## Designing the Database
 
-## Step 2. Creating data
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/database/database.go"
+  lang="golang"
+/>
 
-From the `Table` editor view, select the todo table and click Insert row. Fill out the title field and click Save.
+## Implementing the Database
 
-![Add data](./media/supabase/supabase-add-data.png)
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/database/supabase.go"
+  lang="golang"
+/>
 
-Click `insert row`
+## Designing the API
 
-![List data](./media/supabase/supabase-list-data.png)
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/api/api.go"
+  lang="golang"
+/>
+
+## Configuration and building it together
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/cmd/shorts/main.go"
+  lang="golang"
+/>
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/config/config.go"
+  lang="golang"
+/>
+
+## Configuring oathkeeper
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/oathkeeper/oathkeeper.yml"
+  lang="yaml"
+/>
+
+Access rules
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/oathkeeper/access-rules.yml"
+  lang="yaml"
+/>
+
+## Configuring Kratos
+
+You can simply follow the quickstart guide
+
+## Frontend
+
+## Testing
+
+## Further steps
+
+
 
 # Step 3. Creating Ory Cloud Project
 
@@ -117,148 +197,4 @@ Input name of your project and click create
 You'll see the following screen with needed URls to configure SDKs
 
 ![Ory Cloud connect](./media/supabase/ory-cloud-connect.png)
-
-# Step 4. Building gRPC API. Bootstrapping the project
-
-When you build gRPC API, you need to deal with protoc to generate stubs/messages for your project. When you make API using Go programming language with a couple of gRPC plugins, you need to write a lot of arguments for the protoc compiler, and it forces you to save them somewhere, e.g. in Makefile. Here's a simple example of generating stubs with a couple of plugins enabled.
-
-```shell
-
-protoc -I. \
-       -I/usr/local/include \
-       -I$GOPATH/src \
-       -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-       -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
-       -I$GOPATH/src/github.com/lyft/protoc-gen-validate \
-       --go_out=plugins=grpc:$GOPATH/src \
-       --validate_out=lang=go:$GOPATH/src \
-       /path/to/service.proto
-```
-
-
-[Buf.build](https://buf.build) improves developer experience with protobufs and simplifies generation to a simple `buf generate` command. Create `/buf.yaml` file with the following content
-
-<CodeFromRemote
-  lang="yml"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/buf.yaml"
-/>
-
-The `buf.yaml` file defines a module, and is placed at the root of the Protobuf source files it defines. The placement of the buf.yaml configuration tells buf where to search for .proto files, and how to handle imports. This file contains lint and breaking change detection rules, and if applicable, the name of your module and a list of dependencies.
-
-The `buf.gen.yaml` file defines a local generation template, and is used by the `buf generate` command to generate code for the language(s) of your choice. Create `/buf.gen.yaml` with the following content
-
-<CodeFromRemote
-  lang="yml"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/buf.gen.yaml"
-/>
-
-The specification of our todolist API goes to `todolist/todolist.proto` file with the following content
-
-```protobuf
-syntax = "proto3";
-
-package grpc.v1;
-
-option go_package ="github.com/gen1us2k/cloudnative_todo_list/grpc/v1/todolist";
-
-import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
-
-message User {
-	string id = 1;
-	string first_name = 2;
-	string last_name = 3;
-	string email = 4;
-}
-
-message Todo {
-	int64 id = 1;
-	string title = 2;
-	string status = 3;
-	User owner = 4;
-}
-
-message DeleteResponse {
-	string status = 1;
-	string lo = 2;
-}
-message TodoListResponse {
-	repeated Todo todos = 1;
-}
-
-service TodolistAPIService {
-	rpc CreateTodo(Todo) returns (Todo) {
-		option (google.api.http) = {
-			post: "/api/todo"
-			body: "*"
-		};
-	}
-	rpc ListTodos(google.protobuf.Empty) returns (TodoListResponse) {
-		option (google.api.http) = {
-			get: "/api/todo"
-		};
-	}
-	rpc UpdateTodo(Todo) returns (Todo) {
-		option (google.api.http) = {
-			post: "/api/todo/{id}"
-			body: "*"
-		};
-	}
-	rpc DeleteTodo(Todo) returns (DeleteResponse) {
-		option (google.api.http) = {
-			delete: "/api/todo/{id}"
-			body: "*"
-		};
-	}
-}
-```
-
-## Step 5. Building gRPC API. Building Database layer
-Supabase uses Postgres as the primary RDBMS for their Cloud and postgREST plugin. PostgREST is a standalone web server that turns your PostgreSQL database directly into a RESTful API. Here's an architecture diagram is taken from their documentation about their architecture.
-![Supabase Architecture](https://supabase.com/docs/assets/images/supabase-architecture-9050a7317e9ec7efb7807f5194122e48.png)
-
-Let's define our database layer with this interface
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/database/database.go"
-/>
-
-Here's the implementation of the database interface
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/database/supabase/supabase.go"
-/>
-
-## Step 6. Building gRPC API. Authentication layer
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/middleware/middleware.go"
-/>
-
-## Step 7. Implementing server
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/server/server.go"
-/>
-
-## Step 8. Configuration package for our application
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/config/config.go"
-/>
-
-## Step 9. The cmd package
-
-<CodeFromRemote
-  lang="go"
-  src="https://github.com/gen1us2k/cloudnative_todo_list/blob/master/cmd/todolist/main.go"
-/>
-
-## Step 10. Final
-
 
