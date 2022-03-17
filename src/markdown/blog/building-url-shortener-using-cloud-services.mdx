@@ -1,6 +1,6 @@
 ---
 templateKey: blog
-path: '/building-url-shortener-using-cloud-services/'
+path: '/building-url-shortener-using-cloud-services-backend/'
 author: gen1us2k
 title: Building url shortener project using Supabase database and Ory Cloud
 teaser: Building todo list API using ready-to-use solutions
@@ -32,10 +32,6 @@ You can find complete project [here](https://github.com/gen1us2k/shorts)
 
 [Ory Oathkeeper](https://www.ory.sh/docs/oathkeeper) would be a great example of applying Zero Trust architecture for our project. We'll use it as Identity and access proxy.
 
-[Nuxt.js](https://nuxtjs.org) to build Vue.js application with confidence . An open source framework making web development simple and powerful.
-
-[TailwindCSS](https://tailwindcss.com/) A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
-
 [Migrate](https://github.com/golang-migrate/migrate) to perform database migrations
 
 [Postgres](https://www.postgresql.org/) is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
@@ -56,7 +52,6 @@ I'm a huge fan of the Go programming language, and I've been coding using this l
 Database migrations should be used once you use any RDMBS in your project because you need to change database schema time-to-time. It helps you track versions of your schema and easily perform forwards and downwards migrations. In the pythonic world, it's easy to decide what tool to use for schema migration because it's usually come out of the box by the selected framework. For instance, we have flask-migrate for flask and Django migrations for Django. Since Go uses UNIX philosophy to build the architecture of your project, you need to choose
 
 - HTTP router for your endpoints
-- Requests multiplexor
 - ORM or a library to work with the database
 - a tool to perform migrations
 
@@ -74,15 +69,22 @@ My requirements for Go migration tool:
 
 A URL shortener is a lightweight service, and it would be best to have a simple enough package to build an HTTP API around it. You  have several options on what to choose to solve this issue, and the most popular frameworks are
 
-- Echo
-- Gin
-- Go-kit
+- [Echo](https://echo.labstack.com)
+- [Gin](https://github.com/gin-gonic/gin)
+- [Go-kit](https://github.com/go-kit/kit)
 
 Go-kit is an excellent framework for building a complex system with many microservices. Even a simple net/http with http router would be enough for our example. Usually, I toss a coin when I choose between echo and gin, so I use gin in this project.
 
 I'm huge fan of gRPC when I build APIs with Go and I used it a lot in my previous experience. Also, I'm huge fan of echo framework. I chose gin because of it's simplicity and feature rich support. Actually a simple `net/http` would be enough to build this project with httprouter but to make things more conveinent I chose gin.
 
 Okay. Let's start hacking, shall we?
+
+## Configuration package
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/cmd/shorts/main.go"
+  lang="golang"
+/>
 
 ## Defining Database schema.
 
@@ -131,31 +133,46 @@ CREATE TABLE IF NOT EXISTS url_view (
 
 ## Designing the Database
 
+I always use interfaces for database layer because of the following benefits
+
+- I can change a database simply by implementing a designed interface
+- It helps me to think and design a proper layer for the database
+- It helps to reduce dependencies between different parts of the codebase
+- It helps to write more modular and decoupled code
+- I can always implement a mock for my database layer by simply implementing a mock layer and use it in tests
+
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/database/database.go"
   lang="golang"
 />
 
 ## Implementing the Database
+Supabase uses Postgres as their main RDBMS. Also, they use PostgREST, a standalone web server that turns your PostgreSQL database directly into a RESTful API. The structural constraints and permissions in the database determine the API endpoints and operations.
+Here's the supabase implementation of database layer.
 
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/database/supabase.go"
   lang="golang"
 />
 
-## Designing the API
+## Designing the HTTP API
+
+Url shortener is a simple project and we need only two endpoints:
+
+- Shortify URL by passing POST request to /api/url
+- Get created URLs by passing GET request to /api/url endpoint
+
+Here's the implementation
 
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/api/api.go"
   lang="golang"
 />
 
-## Configuration and building it together
+## Building everything together
 
-<CodeFromRemote
-  src="https://github.com/gen1us2k/shorts/blob/master/cmd/shorts/main.go"
-  lang="golang"
-/>
+Create a file in `cmd/shorts/main.go` with the following content
+
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/config/config.go"
   lang="golang"
@@ -163,38 +180,30 @@ CREATE TABLE IF NOT EXISTS url_view (
 
 ## Configuring oathkeeper
 
+I'll use oathkeeper in this example to have zero trust network configuration. Oathkeeper, in this example, acts as a reverse proxy, but it checks if the request is authenticated.
+
+URLs that follow `/u/hash`  pattern should be available for anonymous users, and API should be available only for authenticated users.
+Here's the basic configuration for oathkeeper
+
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/oathkeeper/oathkeeper.yml"
   lang="yaml"
 />
 
-Access rules
+Access rules for oathkeeper
 
 <CodeFromRemote
   src="https://github.com/gen1us2k/shorts/blob/master/oathkeeper/access-rules.yml"
   lang="yaml"
 />
 
-## Configuring Kratos
+## Dealing with authentication
+You can follow the [quickstart guide](https://www.ory.sh/docs/kratos/quickstart) to add Kratos to your project. You can inspect [docker-compose]( and kratos folder in the repository, but I have a basic configuration taken from a quickstart.
 
-You can simply follow the quickstart guide
+## Authentication middleware
 
-## Frontend
-
-## Testing
-
-## Further steps
-
-
-
-# Step 3. Creating Ory Cloud Project
-
-From your Ory Cloud dashboard scroll down to the end of sidebar and click ‘Create project’
-Input name of your project and click create
-
-![Ory Project create](./media/supabase/ory-create-project.png)
-
-You'll see the following screen with needed URls to configure SDKs
-
-![Ory Cloud connect](./media/supabase/ory-cloud-connect.png)
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/middleware/middleware.go"
+  lang="go"
+/>
 
