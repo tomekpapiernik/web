@@ -1,0 +1,69 @@
+---
+templateKey: blog
+path: '/building-url-shortener-using-cloud-services-frontend/'
+author: gen1us2k
+title: Building url shortener project using Supabase database and Ory Cloud
+teaser: Building todo list API using ready-to-use solutions
+subtitle: Step-by-step guide to create urlshortener with authentication using Cloud solutions
+overline: Ory Cloud and Supabase guide
+publishedAt: 2022-03-15
+published: true
+description: ''
+tags:
+  - Guide
+  - Authentication
+  - Ory Cloud
+  - Open Source
+  - User Management
+---
+
+import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
+
+The previous blog post covers the implementation of the backend for the showcase using Ory and Supabase. This article will show you an example of building a front-end part for the URL shortener.
+
+## What technologies do we use
+
+[Nuxt](https://nuxtjs.org/) An open source framework making web development simple and powerful. Build your next Vue.js application with confidence using Nuxt.
+
+[TailwindCSS](https://tailwindcss.com/) A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+
+[Axios](https://github.com/axios/axios) Promise based HTTP client for the browser and node.js
+
+I started building JS apps in 2013. It was fun building apps using backbone, underscore, and jquery back in those days. In late 2015 I decided to switch to backend development, and I abandoned coding in JS. The best thing for me was to be subscribed to front-end newsletters like front-end focus or similar and have conversations with front-end engineers to be informed about current trends. It helped me be on track and have at least knowledge of what to use and when.
+I loved that JS started to move to ES6 implementation because coding in ES5 looks like a nightmare. Webcomponents/Polymer/Material design and other stuff were awesome inventions.
+
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/store/session.ts"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/store/url.ts"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/components/AppHeader.vue"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/components/URLView.vue"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/components/URLInput.vue"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/pages/index.vue"
+  lang="ts"
+/>
+
+<CodeFromRemote
+  src="https://github.com/gen1us2k/shorts/blob/master/client/nuxt.config.js"
+  lang="js"
+/>
