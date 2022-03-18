@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Button from '../components/freestanding/button/button'
-import { PropTypes as ReleaselistProps } from '../components/layouts/release-notes/release-list'
 import { PropTypes as HeroImageProps } from '../components/layouts/hero/hero-image'
+import { PropTypes as ReleaselistProps } from '../components/layouts/release-notes/release-list'
 import { PropTypes as SeoProps } from '../components/layouts/seo/seo'
 
 import Release from '../images/illustrations/docs.svg'
@@ -17,9 +17,11 @@ export const seo: SeoProps = {
 
 export const hero: HeroImageProps = {
   id: 'release.hero',
-  title: <>
+  title: (
+    <>
       <span className={'is-themed-primary'}>Ory Cloud</span> Release Notes
-    </>,
+    </>
+  ),
   description: 'We strive to make Ory Cloud the best solution for you.',
   buttons: [
     {
@@ -40,9 +42,10 @@ export const featureList: ReleaselistProps = {
       title: 'Latest releases',
       description: (
         <>
-          Ory Cloud has now better compatibility with Ory Open Source features, new Network Policies, Cilium and generally performance improving changes.
+          Ory Cloud has now better compatibility with Ory Open Source features,
+          new Network Policies, Cilium and general performance improvements.
         </>
-      ),
+      )
     }
   ]
 }

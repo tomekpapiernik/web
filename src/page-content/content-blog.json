@@ -133,6 +133,11 @@
       "name": "iglu",
       "fullname": "IGLU",
       "url": "https://github.com/IGLU-Agency"
+    },
+    {
+      "name": "vadosware",
+      "fullname": "Vadosware",
+      "url": "http://vadosware.io/"
     }
   ]
 }

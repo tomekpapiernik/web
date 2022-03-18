@@ -91,6 +91,10 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
         },
         {
           icon: Plus,
+          title: 'Add up to 3 team members'
+        },
+        {
+          icon: Plus,
           title: (
             <>
               Fair use policy
@@ -131,7 +135,7 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
         },
         {
           icon: Plus,
-          title: 'Add up to 3 team members'
+          title: 'Add more team members'
         }
       ]
     },
