@@ -189,7 +189,7 @@ The answer isn't so simple. Quoting from the
 
 We can consider the requirement to access session values by JavaScript a niche case, but it still has some major implications. It makes you responsible for making sure the secret is not leaked, either by careless coding or introducing bugs.
 
-In the light of that risk, cookies look like a good alternative.
+Naturally, you don't want this responsibility to be yours. Using cookies is a great alternative in this situation as the responsibilty for keeping secrets secure is transferred over to the browser.
 
 What's great about cookies is that they provide all the features we
 want and need for `session` storage minus the headache of managing them as they're browser-managed. This also decreases the risk of a security vulnerability leaking the session. 
