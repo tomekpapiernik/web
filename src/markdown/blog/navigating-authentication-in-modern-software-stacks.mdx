@@ -70,9 +70,7 @@ you realize that they apply to two different (albeit inherently connected) ideas
 
 > **Authorization** is the process of verifying if that entity is allowed to access resources or perform operations on specific resources.
 
-To put it simply, authentication is all about logging in to applications and the identity of the user. Once you are logged in and 
-start interacting with resources, the system performs authorization to see if you can view, edit, or remove the resource that you want to 
-selected. 
+To put it simply, authentication is all about performing login/registration in your application and the management of the _identity_ of your user. Once your user is logged in and starts interacting with resources, the system performs authorization to see if the _identity_ can view, edit, or remove the selected resource .
 
 Think about giving someone access to a spreadsheet in Google docs. You choose whom you want to allow to acces the document and whether that person can edit the cells or just view them. To start working on it, the collaborator must first authenticate by signing in to their account. Upon accessing the file, the system checks what kind of access has been given to that user and authorizes them to edit or view the file. 
 
@@ -96,7 +94,7 @@ page or perform a different action?
 This is where sessions come in handy. You probably heard this term before, but do you know what role it plays in the auth landscape? 
 When you're using sessions, it means that you created a mechanism that stores information about the user in the application. In terms of authentication, sessions store information about a successful login which is a great way to prove that they are who they say they are, without the need to re-login for every subsequent action in the app. 
 
-What are sessions in technical terms? How's the data stored? Everything depends on the technology you use and the specific use case, but sessions can be stored in many different forms and formats, such as URL query params, cookies, browser local storage, or tokens. 
+What are sessions in technical terms? How's the data stored? Everything depends on the technology you use and the specific use case, but sessions can be represented in many different forms and formats, such as URL query params, cookies, browser local storage, or tokens. 
 
 ## The Modern Stack
 
@@ -113,14 +111,14 @@ To get a better understanding of implementing authentication, let's look at the 
 
 Single-page applications run completely in the user's browser and don't rely
 on any interaction with the server to maintain the state of your data. Main technologies used to create SPAs
-include HTML, CSS, and JavaScript. Most popular frameworks include [React](https://reactjs.org/), [Angular](https://angular.io/), and
+include HTML, CSS, and JavaScript. Some popular frameworks include [React](https://reactjs.org/), [Angular](https://angular.io/), and
 [VueJs](https://vuejs.org/).
 
 ![SPA Diagram](media/spa-diagram.png)
 
 ### Server-side Rendering Applications (SSR)
 
-Server-side rendered applications aim to improve load times to guarantee a snappy user experience. They do so by rendering pages on the server before they reach the client which takes the burden of downloading JS assets off the browser's shoulders. Most popular frameworks used for SSR include [NextJs](https://nextjs.org/) and [NuxtJs](https://v3.nuxtjs.org/).
+Server-side rendered applications aim to improve load times to guarantee a snappy user experience. They do so by rendering pages on the server before they reach the client which takes the burden of downloading JS assets off the browser's shoulders. Some popular frameworks used for SSR include [NextJs](https://nextjs.org/) and [NuxtJs](https://v3.nuxtjs.org/).
 
 ![SSR Diagram](media/ssr-diagram.png)
 
@@ -207,7 +205,7 @@ they run in is by definition more secure. This of course does rely on your
 security practices, such as who has access to your servers.
 
 But - for argument’s sake - let's assume that the environment the application works in is secure.
-In such case, tokens can easily be issued to a server and kept in memory. There's no need to store
+In such a case, tokens can easily be issued to a server and kept in memory. There's no need to store
 them on disk since, hopefully, your server does not restart every couple of hours. 😉
 
 Mobile device running Android and iOS each have their own methodologies for storing tokens, but
